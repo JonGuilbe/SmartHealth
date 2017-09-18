@@ -1,0 +1,10 @@
+c:\Users\Top Nep\Documents\POOST\SmartHealth\bin\Debug\netcoreapp2.0\SmartHealth.deps.json
+c:\Users\Top Nep\Documents\POOST\SmartHealth\bin\Debug\netcoreapp2.0\SmartHealth.runtimeconfig.json
+c:\Users\Top Nep\Documents\POOST\SmartHealth\bin\Debug\netcoreapp2.0\SmartHealth.runtimeconfig.dev.json
+c:\Users\Top Nep\Documents\POOST\SmartHealth\bin\Debug\netcoreapp2.0\SmartHealth.dll
+c:\Users\Top Nep\Documents\POOST\SmartHealth\bin\Debug\netcoreapp2.0\SmartHealth.pdb
+c:\Users\Top Nep\Documents\POOST\SmartHealth\obj\Debug\netcoreapp2.0\SmartHealth.csproj.CoreCompileInputs.cache
+c:\Users\Top Nep\Documents\POOST\SmartHealth\obj\Debug\netcoreapp2.0\SmartHealth.AssemblyInfoInputs.cache
+c:\Users\Top Nep\Documents\POOST\SmartHealth\obj\Debug\netcoreapp2.0\SmartHealth.AssemblyInfo.cs
+c:\Users\Top Nep\Documents\POOST\SmartHealth\obj\Debug\netcoreapp2.0\SmartHealth.dll
+c:\Users\Top Nep\Documents\POOST\SmartHealth\obj\Debug\netcoreapp2.0\SmartHealth.pdb
