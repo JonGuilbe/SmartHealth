@@ -1,0 +1,20 @@
+@{
+    ViewData["Title"] = "Index";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+
+<p>Use this area to insert into the Database.</p>
+<form asp-controller = "Test" asp-action="Insert" method="post">
+    <div>
+        <label asp-for = "ID"></label>
+        <input asp-for = "ID">
+    </div>
+    <div>
+        <label asp-for = "Name"></label>
+        <input asp-for = "Name" />
+    </div>
+    <div>
+        <input type="submit" value = "Save" />
+    </div>
+</form>
