@@ -5,10 +5,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SmartHealth.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace SmartHealth.Controllers
 {
-    public class HomeController : Controller
+        public class HomeController : Controller
     {
         public IActionResult Index()
         {
