@@ -49,6 +49,8 @@ namespace SmartHealth
                 options.SlidingExpiration = true;
             });
 
+            services.AddSignalR();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,6 +68,11 @@ namespace SmartHealth
             app.UseStaticFiles();
 
             app.UseAuthentication();
+
+            app.UseSignalR(routes => 
+            {
+                routes.MapHub<ChatHub>("chat");
+            });
 
             app.UseMvc(routes =>
             {
