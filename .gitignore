@@ -6,7 +6,8 @@
 ehthumbs.db
 Thumbs.db
 **/bin
-appsettings.json
+**/appsettings.json
+**/appsettings.development.json
 **/obj
 obj/SmartHealth.csproj.nuget.cache
 obj/SmartHealth.csproj.nuget.g.props
