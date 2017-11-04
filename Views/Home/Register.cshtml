@@ -1,0 +1,12 @@
+@{
+    ViewData["Title"] = "Register";
+}
+<h2>@ViewData["Title"]</h2>
+
+<div class="row">
+    <div class="card">
+        <p>Are you a Patient or a Doctor?</p>
+        <a asp-area="" asp-controller="Account" asp-action="PatientRegister">Patient</a>
+        <a asp-area="" asp-controller="Account" asp-action="DoctorRegister">Doctor</a>
+    </div>
+</div>
