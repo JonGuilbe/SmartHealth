@@ -1,7 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -92,3 +91,39 @@
         </p>
     </div>
 </div>
+<div id="chat">
+    <form id="frm-send-message" action="#">
+        <label for="message">Message:</label>
+        <input type="text" id="message" />
+        <input type="submit" id="send" value="Send" />
+    </form>
+    <div class="clear">
+    </div>
+    <ul id="messages"></ul>
+</div>
+<script src="js\signalr.js"></script>
+<script>
+    let transportType = signalR.TransportType.WebSockets;
+    let http = new signalR.HttpConnection(`http://${document.location.host}/chat`, { transport: transportType });
+    let connection = new signalR.HubConnection(http);
+    connection.start();
+ 
+    connection.on('Send', (message) => {
+        appendLine(message);    
+    });
+ 
+    document.getElementById('frm-send-message').addEventListener('submit', event => {
+        let message = document.getElementById('message').value;
+        document.getElementById('message').value = '';
+ 
+        connection.invoke('Send', message);   
+        event.preventDefault();
+    });
+ 
+    function appendLine(line, color) {
+        let li = document.createElement('li');
+        li.innerText = line;
+        document.getElementById('messages').appendChild(li);
+    };
+ 
+</script>
