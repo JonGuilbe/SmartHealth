@@ -221,7 +221,8 @@ namespace SmartHealth.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new PatientUser { UserName = model.Email, Email = model.Email, DateOfBirth = model.DateOfBirth, 
+                 ZipCode = model.ZipCode, Ethnicity = model.Ethnicity, Sex = model.Sex, Insurance = model.Insurance};
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -258,7 +259,7 @@ namespace SmartHealth.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new DoctorUser { UserName = model.Email, Email = model.Email, Address = model.Address };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
