@@ -8,6 +8,7 @@
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="../Views/Doctor/pstyle.css" />
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment exclude="Development">
@@ -36,6 +37,14 @@
                     <!-- <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li> -->
                     <!-- <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li> -->
                     <!-- <li><a asp-area="" asp-controller="Test" asp-action="Index">Test Database</a></li> -->
+                    <form class="navbar-form navbar-center">
+                      <div class="search input-group">
+                        <input type="text" class="form-control" placeholder="Search ...">
+                          <div class="input-group-btn">
+                            <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                          </div>
+                      </div>
+                    </form> 
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>

@@ -1,0 +1,43 @@
+*{
+	padding:0;
+	margin:0;
+}
+body{
+	background: linear-gradient(to top right, #ffff66 0%, #ff9933 100%);
+}
+
+/* Navigation */
+.navbar{
+	background-color: #222 !important;
+    text-transform: uppercase;
+    font-family: 'PT Sans Narrow', Arial, sans-serif;
+	font-weight: 700;
+	
+}
+.navbar a{
+	color: #fff !important;
+	opacity: 0.7;
+}
+a{
+	text-decoration: none;
+	transition: all 500ms ease-in-out;
+}
+.navbar a:hover{
+	opacity: 1;
+	background-color: #111111 !important;
+}
+ul .dropdown-menu li{
+	background-color: #0E1F0E;
+}
+.search{
+	padding: 0px 30px;
+}
+.w3-display-container{
+	margin: 50px 30px;
+}
+.greencard{
+	margin-top: 180px;
+}
+.w3-card-4{
+	background-color: white;
+}
