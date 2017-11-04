@@ -3,10 +3,20 @@
 }
 <h2>@ViewData["Title"]</h2>
 
-<div class="row">
-    <div class="card">
-        <p>Are you a Patient or a Doctor?</p>
-        <a asp-area="" asp-controller="Account" asp-action="PatientRegister">Patient</a>
-        <a asp-area="" asp-controller="Account" asp-action="DoctorRegister">Doctor</a>
-    </div>
+<div class="card">
+  <img class="card-img-top" style= "max-width: 200px; height: auto;"src="~/images/doctorStethoscope.jpg" alt="Card image cap">
+  <div class="card-block">
+    <h4 class="card-title">Doctor</h4>
+    <p class="card-text">Create Doctor Account</p>
+    <a asp-area="" asp-controller="Account" class="btn btn-primary" asp-action="DoctorRegister">Doctor</a>
+  </div>
+</div>
+
+<div class="card">
+  <img class="card-img-top" style="max-width: 200px; height: auto;" src="~/images/patientThumbsUp.jpg" alt="Card image cap">
+  <div class="card-block">
+    <h4 class="card-title">Patient</h4>
+    <p class="card-text">Create Patient Account</p>
+    <a asp-area="" asp-controller="Account" class="btn btn-primary" asp-action="PatientRegister">Doctor</a>
+  </div>
 </div>
