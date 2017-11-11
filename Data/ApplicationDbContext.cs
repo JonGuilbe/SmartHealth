@@ -20,6 +20,16 @@ namespace SmartHealth.Data
         public string Notes { get;  set; }
         public Boolean IsPrivate { get; set; }
     }
+    
+    public class Message
+    {
+        public int Id { get; set; }
+        public string Time { get; set; }
+        public string DoctorID  { get; set; }
+        public string PatientID  { get; set; }
+        public string Message { get; set;}
+        public Boolean FromPatient { get; set; }
+    }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -39,5 +49,6 @@ namespace SmartHealth.Data
         public DbSet<PatientUser> Patients { get; set; }
         public DbSet<DoctorUser> Doctors { get; set; }
         public DbSet<Appointment> Appointments { get; set;}
+        public DbSet<Appointment> Messages { get; set;}
     }
 }
