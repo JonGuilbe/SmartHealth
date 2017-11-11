@@ -13884,23 +13884,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\novai\\.nuget\\packages\\": {},
+    "C:\\Users\\Aira\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\novai\\SmartHealth\\SmartHealth.csproj",
+      "projectUniqueName": "c:\\Users\\Aira\\SmartHealth\\SmartHealth.csproj",
       "projectName": "SmartHealth",
-      "projectPath": "c:\\Users\\novai\\SmartHealth\\SmartHealth.csproj",
-      "packagesPath": "C:\\Users\\novai\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\novai\\SmartHealth\\obj\\",
+      "projectPath": "c:\\Users\\Aira\\SmartHealth\\SmartHealth.csproj",
+      "packagesPath": "C:\\Users\\Aira\\.nuget\\packages\\",
+      "outputPath": "c:\\Users\\Aira\\SmartHealth\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\novai\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Aira\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"

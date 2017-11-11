@@ -18,3 +18,13 @@ c:\Users\novai\SmartHealth\obj\Debug\netcoreapp2.0\SmartHealth.AssemblyInfoInput
 c:\Users\novai\SmartHealth\obj\Debug\netcoreapp2.0\SmartHealth.AssemblyInfo.cs
 c:\Users\novai\SmartHealth\obj\Debug\netcoreapp2.0\SmartHealth.dll
 c:\Users\novai\SmartHealth\obj\Debug\netcoreapp2.0\SmartHealth.pdb
+c:\Users\Aira\SmartHealth\bin\Debug\netcoreapp2.0\SmartHealth.deps.json
+c:\Users\Aira\SmartHealth\bin\Debug\netcoreapp2.0\SmartHealth.runtimeconfig.json
+c:\Users\Aira\SmartHealth\bin\Debug\netcoreapp2.0\SmartHealth.runtimeconfig.dev.json
+c:\Users\Aira\SmartHealth\bin\Debug\netcoreapp2.0\SmartHealth.dll
+c:\Users\Aira\SmartHealth\bin\Debug\netcoreapp2.0\SmartHealth.pdb
+c:\Users\Aira\SmartHealth\obj\Debug\netcoreapp2.0\SmartHealth.csproj.CoreCompileInputs.cache
+c:\Users\Aira\SmartHealth\obj\Debug\netcoreapp2.0\SmartHealth.AssemblyInfoInputs.cache
+c:\Users\Aira\SmartHealth\obj\Debug\netcoreapp2.0\SmartHealth.AssemblyInfo.cs
+c:\Users\Aira\SmartHealth\obj\Debug\netcoreapp2.0\SmartHealth.dll
+c:\Users\Aira\SmartHealth\obj\Debug\netcoreapp2.0\SmartHealth.pdb
