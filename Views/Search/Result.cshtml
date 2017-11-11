@@ -1,0 +1,10 @@
+@model SearchModel
+@{
+    ViewData["Title"] = "Search Results";
+}
+
+<h2>Search results for @ViewData["Query"]:</h2>
+
+@foreach (var result in ViewData["Result"]){
+    <p>@result.getName()</p>
+}

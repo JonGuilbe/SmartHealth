@@ -27,7 +27,7 @@ namespace SmartHealth.Data
         public string Time { get; set; }
         public string DoctorID  { get; set; }
         public string PatientID  { get; set; }
-        public string Message { get; set;}
+        public string MessageString { get; set;}
         public Boolean FromPatient { get; set; }
     }
 
