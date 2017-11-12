@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SmartHealth.Data;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using SmartHealth;
 
 namespace SmartHealth.Controllers
 {
@@ -22,12 +24,21 @@ namespace SmartHealth.Controllers
             _context = context;
         }
 
-        public IActionResult Result()
+        public IActionResult Result([FromQuery] string Query)
         {
-            string page = HttpContext.Request.Query["query"].ToString();
+            ViewData["Query"] = Query;
+            //Console.WriteLine(_context.Patients.FirstOrDefault().Ethnicity);
+            var query = from user in _context.Doctors where
+                        user.LastName == Query select user;
+            
+            foreach(var result in query)
+            {
+                Console.WriteLine("Doctor Info: First name - {0} Last name - {1}", result.FirstName, result.LastName );
+            }
 
-
-            return View();
+            ViewData["Result"] = query;
+            //await _context.Doctors.FirstOrDefaultAsync()
+            return View(query);
         }
        
     }

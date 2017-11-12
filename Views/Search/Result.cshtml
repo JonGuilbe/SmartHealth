@@ -1,10 +1,41 @@
-@model SearchModel
+@model IEnumerable<DoctorUser>
 @{
     ViewData["Title"] = "Search Results";
 }
 
 <h2>Search results for @ViewData["Query"]:</h2>
 
-@foreach (var result in ViewData["Result"]){
-    <p>@result.getName()</p>
-}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               Things
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Phone Number</td>
+            <td>Address</td>
+        </tr>
+            @foreach (var user in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(Resultuser => user.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(Resultuser => user.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(Resultuser => user.PhoneNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(Resultuser => user.Address)
+                    </td>
+                </tr>
+            }
+    </tbody>
+</table>

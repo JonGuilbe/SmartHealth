@@ -8,29 +8,6 @@ using SmartHealth.Models;
 
 namespace SmartHealth.Data
 {
-    public class Appointment
-    {
-        public int Id { get; set; }
-        public string Date { get; set; }
-        public string DoctorID  { get; set; }
-        public string PatientID  { get; set; }
-        public string Cost { get; set; }
-        public string Service { get; set; }
-        public TimeSpan[] Time { get; set; }
-        public string Notes { get;  set; }
-        public Boolean IsPrivate { get; set; }
-    }
-    
-    public class Message
-    {
-        public int Id { get; set; }
-        public string Time { get; set; }
-        public string DoctorID  { get; set; }
-        public string PatientID  { get; set; }
-        public string MessageString { get; set;}
-        public Boolean FromPatient { get; set; }
-    }
-
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
@@ -46,9 +23,10 @@ namespace SmartHealth.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
-        public DbSet<PatientUser> Patients { get; set; }
-        public DbSet<DoctorUser> Doctors { get; set; }
-        public DbSet<Appointment> Appointments { get; set;}
-        public DbSet<Appointment> Messages { get; set;}
+        public virtual DbSet<ApplicationUser> Users { get; set; }
+        public virtual DbSet<PatientUser> Patients { get; set; }
+        public virtual DbSet<DoctorUser> Doctors { get; set; }
+        //public DbSet<Appointment> Appointments { get; set;}
+        //public DbSet<Message> Messages { get; set;}
     }
 }
