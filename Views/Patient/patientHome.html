@@ -5,13 +5,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       
-     <title>Patient UI</title>
+     <title>Patient Home</title>
      <link rel="stylesheet" href="pstyle.css">
      <link rel="stylesheet" href="../../wwwroot/lib/bootstrap/dist/css/bootstrap.css" />
      <link rel="stylesheet" href="../../wwwroot/lib/bootstrap/dist/css/bootstrap.min.css" />
      <link rel="stylesheet" href="../../wwwroot/lib/bootstrap/dist/css/font-awesome.min.css" />
     
      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <!-- calendar -->
+      <link rel='stylesheet' href='../../wwwroot/calendar/fullcalendar.css' />
+      <script src='../../wwwroot/calendar/lib/jquery.min.js'></script>
+      <script src='../../wwwroot/calendar/lib/moment.min.js'></script>
+      <script src='../../wwwroot/calendar/fullcalendar.js'></script>
   </head>
 
   <body>
@@ -61,15 +66,20 @@
 
       <div class="w3-display-container" >
           <div class="w3-card-4" style="width:57%;">
-              <!-- insert calender code -->
              <header class="w3-container w3-blue">
                <h3>Calender</h3>
              </header>
-         
-             <div class="w3-container">
-               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-             </div>
-              <!-- x -->
+          <!-- insert calender code -->
+          <div id="calendar" class="cal1">
+          <script type="text/javascript">
+            $(document).ready(function() {
+             $('#calendar').fullCalendar({
+              // put callbacks here
+             })
+           });
+         </script>
+         </div>
+         <!-- x -->
           </div>
          
           <div class="w3-card-4 w3-display-topright" style="width:35%;">

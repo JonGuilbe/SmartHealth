@@ -12,6 +12,11 @@
        <link rel="stylesheet" href="../../wwwroot/lib/bootstrap/dist/css/font-awesome.min.css" />
   
        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <!-- calendar -->
+      <link rel='stylesheet' href='../../wwwroot/calendar/fullcalendar.css' />
+      <script src='../../wwwroot/calendar/lib/jquery.min.js'></script>
+      <script src='../../wwwroot/calendar/lib/moment.min.js'></script>
+      <script src='../../wwwroot/calendar/fullcalendar.js'></script>
     </head>
   
     <body>
@@ -52,9 +57,17 @@
             <header class="w3-container w3-blue">
               <h2>Calender</h2>
             </header>
-           <div class="w3-container">
-             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-           </div>
+            <!-- insert calender code -->
+            <div id="calendar" class="cal1">
+            <script type="text/javascript">
+              $(document).ready(function() {
+                $('#calendar').fullCalendar({
+                // put callbacks here
+                })
+              });
+            </script>
+            </div>
+            <!-- x -->
            <div class="w3-container inbutton">
              <a href="#" class="btn btn-info"  role="button">Update Appointment</a>
            </div>
