@@ -11,9 +11,11 @@ using Microsoft.EntityFrameworkCore;
 using SmartHealth.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SmartHealth;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SmartHealth.Controllers
 {
+    [Authorize]
     public class SearchController : Controller
     {
 

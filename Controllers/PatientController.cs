@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 using SmartHealth.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SmartHealth.Controllers 
 
 {
+    [Authorize]
     public class PatientController : Controller
     {
         public IActionResult Home()
