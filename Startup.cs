@@ -29,7 +29,13 @@ namespace SmartHealth
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc().AddRazorPagesOptions(options =>
+            {
+                options.Conventions.AuthorizeFolder("/Patient");
+                options.Conventions.AuthorizeFolder("/Doctor");
+                options.Conventions.AuthorizeFolder("/Search");
+
+            });
             ConnectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<postgresContext>();
             services.AddTransient<IEmailSender, EmailSender>();
@@ -56,6 +62,8 @@ namespace SmartHealth
 
             // User settings
             options.User.RequireUniqueEmail = true;
+
+            
         });
 
             services.ConfigureApplicationCookie(options =>
@@ -67,6 +75,8 @@ namespace SmartHealth
                 options.LogoutPath = "/Account/Logout"; // If the LogoutPath is not set here, ASP.NET Core will default to /Account/Logout
                 options.AccessDeniedPath = "/Account/AccessDenied"; // If the AccessDeniedPath is not set here, ASP.NET Core will default to /Account/AccessDenied
                 options.SlidingExpiration = true;
+            
+
             });
 
             services.AddSignalR();

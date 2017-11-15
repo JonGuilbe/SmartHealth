@@ -7,13 +7,20 @@ using Microsoft.AspNetCore.Mvc;
 using SmartHealth.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SmartHealth.Controllers 
 
 {
+    [Authorize]
     public class DoctorController : Controller
     {
         public IActionResult Home()
+        {
+            return View();
+        }
+
+        public IActionResult Profile()
         {
             return View();
         }
