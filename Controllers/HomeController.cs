@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using SmartHealth.SeedDatabase;
 using Microsoft.AspNetCore.Mvc;
 using SmartHealth.Models;
 using Microsoft.AspNetCore.Identity;
