@@ -9,12 +9,13 @@ using Microsoft.EntityFrameworkCore.ValueGeneration;
 using SmartHealth.Data;
 using System;
 
-namespace SmartHealth.Data.Migrations
+namespace SmartHealth.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171116163204_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -128,38 +129,14 @@ namespace SmartHealth.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("SmartHealth.Data.Appointment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Cost");
-
-                    b.Property<string>("Date");
-
-                    b.Property<string>("DoctorID");
-
-                    b.Property<bool>("IsPrivate");
-
-                    b.Property<string>("Notes");
-
-                    b.Property<string>("PatientID");
-
-                    b.Property<string>("Service");
-
-                    b.Property<TimeSpan[]>("Time");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Appointments");
-                });
-
             modelBuilder.Entity("SmartHealth.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("AccessFailedCount");
+
+                    b.Property<string>("AccountType");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
