@@ -10,6 +10,26 @@ namespace SmartHealth.Migrations.ApplicationDb
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Appointments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int4", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    Cost = table.Column<string>(type: "text", nullable: true),
+                    Date = table.Column<string>(type: "text", nullable: true),
+                    DoctorID = table.Column<string>(type: "text", nullable: true),
+                    IsPrivate = table.Column<bool>(type: "bool", nullable: false),
+                    Notes = table.Column<string>(type: "text", nullable: true),
+                    PatientID = table.Column<string>(type: "text", nullable: true),
+                    Service = table.Column<string>(type: "text", nullable: true),
+                    Time = table.Column<TimeSpan[]>(type: "interval[]", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Appointments", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
                 {
@@ -56,6 +76,23 @@ namespace SmartHealth.Migrations.ApplicationDb
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Messages",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int4", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    DoctorID = table.Column<string>(type: "text", nullable: true),
+                    FromPatient = table.Column<bool>(type: "bool", nullable: false),
+                    MessageString = table.Column<string>(type: "text", nullable: true),
+                    PatientID = table.Column<string>(type: "text", nullable: true),
+                    Time = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Messages", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -205,6 +242,9 @@ namespace SmartHealth.Migrations.ApplicationDb
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Appointments");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
             migrationBuilder.DropTable(
@@ -218,6 +258,9 @@ namespace SmartHealth.Migrations.ApplicationDb
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Messages");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

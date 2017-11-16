@@ -189,6 +189,52 @@ namespace SmartHealth.Migrations.ApplicationDb
                     b.HasDiscriminator<string>("Discriminator").HasValue("ApplicationUser");
                 });
 
+            modelBuilder.Entity("SmartHealth.Models.Appointment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Cost");
+
+                    b.Property<string>("Date");
+
+                    b.Property<string>("DoctorID");
+
+                    b.Property<bool>("IsPrivate");
+
+                    b.Property<string>("Notes");
+
+                    b.Property<string>("PatientID");
+
+                    b.Property<string>("Service");
+
+                    b.Property<TimeSpan[]>("Time");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Appointments");
+                });
+
+            modelBuilder.Entity("SmartHealth.Models.Message", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("DoctorID");
+
+                    b.Property<bool>("FromPatient");
+
+                    b.Property<string>("MessageString");
+
+                    b.Property<string>("PatientID");
+
+                    b.Property<string>("Time");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Messages");
+                });
+
             modelBuilder.Entity("SmartHealth.Models.DoctorUser", b =>
                 {
                     b.HasBaseType("SmartHealth.Models.ApplicationUser");
