@@ -29,7 +29,6 @@ namespace SmartHealth.Controllers
         public IActionResult Result([FromQuery] string Query)
         {
             ViewData["Query"] = Query;
-            //Console.WriteLine(_context.Patients.FirstOrDefault().Ethnicity);
             var query = from user in _context.Doctors where
                         user.LastName == Query || user.FirstName == Query select user;
             
@@ -39,7 +38,6 @@ namespace SmartHealth.Controllers
             }
 
             ViewData["Result"] = query;
-            //await _context.Doctors.FirstOrDefaultAsync()
             return View(query);
         }
        

@@ -30,9 +30,13 @@ namespace SmartHealth.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Profile()
+        public async Task<IActionResult> Profile(string id)
         {
-            var user = await _userManager.GetUserAsync(HttpContext.User);
+            ApplicationUser user;
+            if (string.IsNullOrEmpty(id))
+                user = await _userManager.GetUserAsync(HttpContext.User);
+            else
+                user = await _userManager.FindByIdAsync(id);
             return View(user);
         }
     }

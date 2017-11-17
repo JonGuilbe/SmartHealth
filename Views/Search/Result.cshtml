@@ -35,6 +35,9 @@
                     <td>
                         @Html.DisplayFor(Resultuser => user.Address)
                     </td>
+                    <td>
+                        <a asp-area="" asp-controller="Doctor" asp-Action="Profile" asp-route-id="@user.Id">View Profile</a>
+                    </td>
                 </tr>
             }
     </tbody>
