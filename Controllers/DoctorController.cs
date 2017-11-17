@@ -32,15 +32,19 @@ namespace SmartHealth.Controllers
 
         public async Task<IActionResult> Profile(string id)
         {
-            ViewData["id"] = null;
             ApplicationUser user;
-            if (string.IsNullOrEmpty(id)) //If empty, get the current user
+            //Console.WriteLine("Hello yes the ID is: " + id);
+            if (id == null) //If empty, get the current user
             {
                 user = await _userManager.GetUserAsync(HttpContext.User);
+                Console.WriteLine("This is the id not existing branch");
             }
             else //If not empty, get the doctor we're looking for
+            {
+            //Console.WriteLine("This is the id existing branch");
                 user = await _userManager.FindByIdAsync(id);
                 ViewData["id"] = user.Id;
+            }
             return View(user);
         }
     }

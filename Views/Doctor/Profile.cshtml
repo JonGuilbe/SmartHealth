@@ -17,7 +17,7 @@ else {
           <div class="w3-card-4 ins" style="width: 800px;" >
             <!-- insert calender code -->
             <!-- x -->
-            @if (ViewData["id"] != null)
+            @if (@ViewData["id"] != null)
              {
               <div class="w3-container inbutton">
               <a asp-area="" asp-controller="Appointment" asp-action="Create" asp-route-id='@ViewData["id"]'>Schedule Appointment with this doctor.</a>
