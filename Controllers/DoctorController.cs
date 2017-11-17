@@ -32,9 +32,13 @@ namespace SmartHealth.Controllers
 
         public async Task<IActionResult> Profile(string id)
         {
+            ViewData["id"] = null;
             ApplicationUser user;
             if (string.IsNullOrEmpty(id))
+            {
                 user = await _userManager.GetUserAsync(HttpContext.User);
+                ViewData["id"] = id;
+            }
             else
                 user = await _userManager.FindByIdAsync(id);
             return View(user);
