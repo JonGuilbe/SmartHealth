@@ -28,5 +28,6 @@ namespace SmartHealth.Data
         public virtual DbSet<DoctorUser> Doctors { get; set; }
         public virtual DbSet<Appointment> Appointments { get; set;}
         public virtual DbSet<Message> Messages { get; set;}
+        public virtual DbSet<Service> Services { get; set; }
     }
 }
