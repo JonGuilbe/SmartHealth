@@ -12,12 +12,6 @@ namespace SmartHealth.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string AccountType { get; set; }
-        public string DateOfBirth { get; set; }
-        public string Address { get; set; }
-        public string ZipCode { get; set; }
-        public string Ethnicity { get; set; }
-        public string Sex { get; set; }
-        public string Insurance { get; set; }
         
     }
 }

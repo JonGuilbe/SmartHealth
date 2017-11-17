@@ -1,16 +1,11 @@
+@model DoctorUser
 @{
     ViewData["Title"] = "Profile";
 }
-@using Microsoft.AspNetCore.Identity
-@using SmartHealth.Models
-@inject UserManager<ApplicationUser> UserManager
-@{
-  var user = await (UserManager.GetUserAsync(User));
-}
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="pstyle.css">
-<h2>Profile for @user.FirstName @user.LastName</h2>
-@if (user.AccountType == "Patient")
+<h2>Profile for @Model.FirstName @Model.LastName</h2>
+@if (Model.AccountType == "Patient")
 {
   <h2>This page is for doctors only. Please click on your username to access your profile.</h2>
 }
@@ -44,7 +39,7 @@ else {
             </header>
             <div class="w3-container">
              <ul class="demographics">
-              <li>Address: @user.Address</li>
+              <li>Address: @Model.Address</li>
             </ul>
             </div>
             <footer class="w3-container w3-blue">

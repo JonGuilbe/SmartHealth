@@ -31,7 +31,7 @@ namespace SmartHealth.Controllers
             ViewData["Query"] = Query;
             //Console.WriteLine(_context.Patients.FirstOrDefault().Ethnicity);
             var query = from user in _context.Doctors where
-                        user.LastName == Query select user;
+                        user.LastName == Query || user.FirstName == Query select user;
             
             foreach(var result in query)
             {

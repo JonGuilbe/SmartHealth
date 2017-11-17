@@ -1,21 +1,16 @@
+@model PatientUser
 @{
     ViewData["Title"] = "Profile";
-}
-@using Microsoft.AspNetCore.Identity
-@using SmartHealth.Models
-@inject UserManager<ApplicationUser> UserManager
-@{
-  var user = await (UserManager.GetUserAsync(User));
 }
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="pstyle.css">
 
-@if (user.AccountType == "Doctor")
+@if (Model.AccountType == "Doctor")
 {
   <h2>This page is for patients only. Please click on your username to access your profile.</h2>
 }
 else {
-<h2>Profile for @user.FirstName @user.LastName</h2>
+<h2>Profile for @Model.FirstName @Model.LastName</h2>
 <section>
     <!-- Demographics and medical records -->
      <div class="row row1" > <!--style="background-color: blue;" style="background-color: yellow;"-->
@@ -26,11 +21,11 @@ else {
             </header>
            <div class="w3-container">
             <ul class="demographics">
-              <li>Date of Birth: @user.DateOfBirth</li>
-              <li>Phone Number: @user.PhoneNumber</li>
-              <li>Email: @user.Email</li>
-              <li>Ethnicity: @user.Ethnicity</li>
-              <li>Sex: @user.Sex</li>
+              <li>Date of Birth: @Model.DateOfBirth</li>
+              <li>Phone Number: @Model.PhoneNumber</li>
+              <li>Email: @Model.Email</li>
+              <li>Ethnicity: @Model.Ethnicity</li>
+              <li>Sex: @Model.Sex</li>
             </ul>
            </div>
           </div>
@@ -40,7 +35,7 @@ else {
               <h2>Insurance</h2>
             </header>
             <div class="w3-container">
-             <p>@user.Insurance</p>
+             <p>@Model.Insurance</p>
             </div>
           </div>
   
