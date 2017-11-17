@@ -34,13 +34,13 @@ namespace SmartHealth.Controllers
         {
             ViewData["id"] = null;
             ApplicationUser user;
-            if (string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(id)) //If empty, get the current user
             {
                 user = await _userManager.GetUserAsync(HttpContext.User);
-                ViewData["id"] = id;
             }
-            else
+            else //If not empty, get the doctor we're looking for
                 user = await _userManager.FindByIdAsync(id);
+                ViewData["id"] = user.Id;
             return View(user);
         }
     }

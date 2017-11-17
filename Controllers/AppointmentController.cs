@@ -31,5 +31,15 @@ namespace SmartHealth.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public async Task Add(AppointmentRegisterViewModel model)
+        {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            if(ModelState.IsValid){
+                var appointment = new Appointment { Date = model.Date, DoctorID = "123", PatientID = user.Id, Cost = "123", Service = "Placeholder", Notes = model.Notes };
+                _context.Appointments.Add(appointment);
+                _context.SaveChanges();
+            }
+        }
     }
 }
