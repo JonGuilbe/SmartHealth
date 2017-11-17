@@ -44,7 +44,6 @@ namespace SmartHealth
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-
             services.Configure<IdentityOptions>(options =>
         {
             // Password settings

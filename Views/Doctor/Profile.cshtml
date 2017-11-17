@@ -1,11 +1,20 @@
 @{
     ViewData["Title"] = "Profile";
 }
-
+@using Microsoft.AspNetCore.Identity
+@using SmartHealth.Models
+@inject UserManager<ApplicationUser> UserManager
+@{
+  var user = await (UserManager.GetUserAsync(User));
+}
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="pstyle.css">
-<h2>Profile</h2>
-
+<h2>Profile for @user.FirstName @user.LastName</h2>
+@if (user.AccountType == "Patient")
+{
+  <h2>This page is for doctors only. Please click on your username to access your profile.</h2>
+}
+else {
 <section>
     <!-- Calender -->
     <div class="row row1" ><!--  style="background-color: blue;" -->
@@ -28,6 +37,19 @@
            <div class="w3-container inbutton">
              <a href="#" class="btn btn-info"  role="button">Update Appointment</a>
            </div>
+          </div>
+          <div class="w3-card-4 ins" style="width: 670px;" >
+            <header class="w3-container w3-blue">
+              <h2>Other Information</h2>
+            </header>
+            <div class="w3-container">
+             <ul class="demographics">
+              <li>Address: @user.Address</li>
+            </ul>
+            </div>
+            <footer class="w3-container w3-blue">
+             <h5>Footer</h5>
+            </footer>
           </div>
           <!-- Accepted Insurance -->
           <div class="w3-card-4 ins" style="width: 670px;" >
@@ -79,3 +101,4 @@
   <footer  id="wrapper">
     <a href="#" class="btn btn-info"  role="button">Update Profile</a>
   </footer>
+}
