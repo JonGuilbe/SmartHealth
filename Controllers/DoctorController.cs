@@ -45,7 +45,14 @@ namespace SmartHealth.Controllers
                 user = await _userManager.FindByIdAsync(id);
                 ViewData["id"] = user.Id;
             }
-            return View(user);
+
+            var services = from service in _context.Services where
+                           service.DoctorID == user.Id select service;
+
+            var data = new DoctorViewModel();
+            data.Doctor = (DoctorUser)user;
+            data.Services = services;
+            return View(data);
         }
     }
 }
