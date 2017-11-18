@@ -1,0 +1,26 @@
+@model ServiceAddViewModel
+@{
+    ViewData["Title"] = "Add Service";
+}
+
+<h2>Create an Appointment:</h2>
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" action="/Doctor/Add">
+            <h4>Add a service.</h4>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input type="datetime" asp-for="Name" class="form-control"/>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cost"></label>
+                <input asp-for="Cost" class="form-control" placeholder="0.00"/>
+                <span asp-validation-for="Cost" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-default">Add this service.</button>
+        </form>
+    </div>
+</div>

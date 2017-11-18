@@ -73,12 +73,12 @@ else {
            <div class="w3-container">
              <ul>
                @foreach (var service in Model.Services) {
-                 <li>@service.Name</li>
+                 <li>@service.Name: @service.Cost</li>
               }
              </ul>
            </div>
            <div class="w3-container inbutton">
-             <a href="#" class="btn btn-info"  role="button">Add Procedure</a>
+             <a  asp-area="" asp-controller="Doctor" asp-action="AddService" class="btn btn-info"  role="button">Add Service</a>
            </div>
           </div>
       </div>

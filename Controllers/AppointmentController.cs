@@ -26,7 +26,7 @@ namespace SmartHealth.Controllers
             _context = context;
             _userManager = userManager;
         }
-
+        //TODO Fix this
         public IActionResult Create(string id)
         {
             return View();

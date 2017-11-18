@@ -54,5 +54,18 @@ namespace SmartHealth.Controllers
             data.Services = services;
             return View(data);
         }
+        //TODO Fix this
+        public IActionResult AddService()
+        {
+            return View();
+        }
+
+        public async Task Add(ServiceAddViewModel model)
+        {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var service = new Service { Name = model.Name, Cost = model.Cost, DoctorID = user.Id};
+            _context.Services.Add(service);
+            _context.SaveChanges();
+        }
     }
 }
