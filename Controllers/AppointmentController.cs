@@ -12,6 +12,9 @@ using SmartHealth.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SmartHealth;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using SmartHealth.Services;
 
 namespace SmartHealth.Controllers
 {
@@ -27,19 +30,24 @@ namespace SmartHealth.Controllers
             _userManager = userManager;
         }
         //TODO Fix this
-        public IActionResult Create(string id)
+        [HttpGet]
+        public IActionResult Create(string id, string returnUrl = null)
         {
+            ViewData["ReturnUrl"] = "/Patient/Home";
             return View();
         }
         [HttpPost]
-        public async Task Add(AppointmentRegisterViewModel model)
+        public async Task<IActionResult> Create(string id, AppointmentRegisterViewModel model, string returnUrl = null)
         {
+            ViewData["ReturnUrl"] = "/Patient/Home";
             var user = await _userManager.GetUserAsync(HttpContext.User);
             if(ModelState.IsValid){
-                var appointment = new Appointment { Date = model.Date, DoctorID = "123", PatientID = user.Id, Cost = "123", Service = "Placeholder", Notes = model.Notes };
+                var appointment = new Appointment { Date = model.Date, DoctorID = id, PatientID = user.Id, Cost = "123", Service = "Placeholder", Notes = model.Notes };
                 _context.Appointments.Add(appointment);
                 _context.SaveChanges();
+                return Redirect(returnUrl);
             }
+            return View(model);
         }
     }
 }

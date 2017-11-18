@@ -21,5 +21,6 @@ namespace SmartHealth.Models
 
         [Display(Name = "Notes")]
         public string Notes { get; set ;}
+
     }
 }
