@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
+using Microsoft.AspNetCore.Http;
 
 namespace SmartHealth.Models.AccountViewModels
 {
@@ -35,5 +37,9 @@ namespace SmartHealth.Models.AccountViewModels
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        // user photo
+        [Display(Name = "UserPhoto")]
+        public IFormFile UserPhoto { get; set; }
     }
 }

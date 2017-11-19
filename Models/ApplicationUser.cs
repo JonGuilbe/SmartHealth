@@ -13,5 +13,6 @@ namespace SmartHealth.Models
         public string LastName { get; set; }
         public string AccountType { get; set; }
         
+        public byte[] UserPhoto { get; set; }
     }
 }
