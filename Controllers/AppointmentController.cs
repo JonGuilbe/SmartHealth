@@ -56,5 +56,19 @@ namespace SmartHealth.Controllers
             }
             return View(model);
         }
+        public async Task<IActionResult> ViewApp(int id){
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var appointment = _context.Appointments.FirstOrDefault(i => i.Id == id);
+            var doctorID = appointment.DoctorID;
+            var patientID = appointment.PatientID;
+            var doctor = await _userManager.FindByIdAsync(doctorID);
+            var patient = await _userManager.FindByIdAsync(patientID);
+
+            var data = new ViewAppointmentModel();
+            data.Doctor = (DoctorUser)doctor;
+            data.Patient = (PatientUser)patient;
+            data.App = appointment;
+            return View(data);
+        }
     }
 }

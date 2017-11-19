@@ -194,7 +194,7 @@ namespace SmartHealth.Migrations.ApplicationDb
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Cost");
+                    b.Property<decimal>("Cost");
 
                     b.Property<string>("Date");
 

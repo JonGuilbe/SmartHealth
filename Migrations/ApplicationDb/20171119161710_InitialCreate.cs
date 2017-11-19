@@ -15,7 +15,7 @@ namespace SmartHealth.Migrations.ApplicationDb
                 {
                     Id = table.Column<int>(type: "int4", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
-                    Cost = table.Column<string>(type: "text", nullable: true),
+                    Cost = table.Column<decimal>(type: "numeric", nullable: false),
                     Date = table.Column<string>(type: "text", nullable: true),
                     DoctorID = table.Column<string>(type: "text", nullable: true),
                     IsPrivate = table.Column<bool>(type: "bool", nullable: false),
@@ -93,6 +93,21 @@ namespace SmartHealth.Migrations.ApplicationDb
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Messages", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Services",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int4", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    Cost = table.Column<decimal>(type: "numeric", nullable: false),
+                    DoctorID = table.Column<string>(type: "text", nullable: true),
+                    Name = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Services", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -261,6 +276,9 @@ namespace SmartHealth.Migrations.ApplicationDb
 
             migrationBuilder.DropTable(
                 name: "Messages");
+
+            migrationBuilder.DropTable(
+                name: "Services");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

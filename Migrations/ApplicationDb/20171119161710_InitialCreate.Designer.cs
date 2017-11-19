@@ -12,7 +12,7 @@ using System;
 namespace SmartHealth.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20171116213543_InitialCreate")]
+    [Migration("20171119161710_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -195,7 +195,7 @@ namespace SmartHealth.Migrations.ApplicationDb
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Cost");
+                    b.Property<decimal>("Cost");
 
                     b.Property<string>("Date");
 
@@ -234,6 +234,22 @@ namespace SmartHealth.Migrations.ApplicationDb
                     b.HasKey("Id");
 
                     b.ToTable("Messages");
+                });
+
+            modelBuilder.Entity("SmartHealth.Models.Service", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<decimal>("Cost");
+
+                    b.Property<string>("DoctorID");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Services");
                 });
 
             modelBuilder.Entity("SmartHealth.Models.DoctorUser", b =>

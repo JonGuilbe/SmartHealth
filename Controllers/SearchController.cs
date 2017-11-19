@@ -30,8 +30,9 @@ namespace SmartHealth.Controllers
         {
             ViewData["Query"] = Query;
             var query = from user in _context.Doctors 
-                join service in _context.Services on user.Id equals service.DoctorID
-                 where user.LastName == Query || user.FirstName == Query || service.Name == Query select user;
+                join tempservice in _context.Services on user.Id equals tempservice.DoctorID into tempJoin
+                from service in tempJoin.DefaultIfEmpty()
+                where user.LastName == Query || user.FirstName == Query || service.Name == Query select user;
             
             foreach(var result in query)
             {

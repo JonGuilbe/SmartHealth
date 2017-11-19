@@ -1,0 +1,17 @@
+@model ViewAppointmentModel
+@{
+    ViewData["Title"] = "View";
+}
+
+<h2>View</h2>
+<div class="row">
+    <div class="col-md-4">
+        <h4>Date: @Model.App.Date</h4>
+        <h4>Doctor: @Model.Doctor.FirstName @Model.Doctor.LastName</h4>
+        <h4>Patient: @Model.Patient.FirstName @Model.Patient.LastName</h4>
+        <h4>Service: @Model.App.Service</h4>
+        <h4>Cost: @Model.App.Cost</h4>
+        <h4>Notes: @Model.App.Notes</h4>
+        <h4>Privacy Setting: @Model.App.IsPrivate</h4>
+    </div>
+</div>
