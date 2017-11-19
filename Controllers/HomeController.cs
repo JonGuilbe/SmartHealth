@@ -8,6 +8,8 @@ using SmartHealth.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
+using SmartHealth.Views;
+
 namespace SmartHealth.Controllers
 {
         public class HomeController : Controller

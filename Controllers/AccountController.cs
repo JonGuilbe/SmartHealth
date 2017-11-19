@@ -13,6 +13,8 @@ using Microsoft.Extensions.Options;
 using SmartHealth.Models;
 using SmartHealth.Models.AccountViewModels;
 using SmartHealth.Services;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace SmartHealth.Controllers
 {
@@ -224,6 +226,11 @@ namespace SmartHealth.Controllers
                 var user = new PatientUser { FirstName = model.FirstName, LastName = model.LastName, UserName = model.Email, Email = model.Email, DateOfBirth = model.DateOfBirth, 
                  ZipCode = model.ZipCode, Ethnicity = model.Ethnicity, Sex = model.Sex, Insurance = model.Insurance, PhoneNumber = model.PhoneNumber};
                 var result = await _userManager.CreateAsync(user, model.Password);
+                using (var memoryStream = new MemoryStream())
+                {
+                  await model.UserPhoto.CopyToAsync(memoryStream);
+                  user.UserPhoto = memoryStream.ToArray();
+                }
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
@@ -262,6 +269,11 @@ namespace SmartHealth.Controllers
                 var user = new DoctorUser { FirstName = model.FirstName, LastName = model.LastName, UserName = model.Email, Email = model.Email,
                  Address = model.Address, PhoneNumber = model.PhoneNumber };
                 var result = await _userManager.CreateAsync(user, model.Password);
+                using (var memoryStream = new MemoryStream())
+                {
+                  await model.UserPhoto.CopyToAsync(memoryStream);
+                  user.UserPhoto = memoryStream.ToArray();
+                }
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
@@ -462,6 +474,29 @@ namespace SmartHealth.Controllers
             AddErrors(result);
             return View();
         }
+
+        // UserPhoto
+        [HttpPost("UploadFiles")]
+        public async Task<IActionResult> Post(List<IFormFile> files)
+        {
+          long size = files.Sum(f => f.Length);
+          // full path to file in temp location
+          var filePath = Path.GetTempFileName();
+
+          foreach (var formFile in files)
+          {
+            if (formFile.Length > 0)
+            {
+              using (var stream = new FileStream(filePath, FileMode.Create))
+              {
+                await formFile.CopyToAsync(stream);
+              }
+            }
+          }
+
+          return Ok(new { count = files.Count, size, filePath});
+        }
+
 
         [HttpGet]
         [AllowAnonymous]
