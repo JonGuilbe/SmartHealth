@@ -29,8 +29,9 @@ namespace SmartHealth.Controllers
         public IActionResult Result([FromQuery] string Query)
         {
             ViewData["Query"] = Query;
-            var query = from user in _context.Doctors where
-                        user.LastName == Query || user.FirstName == Query select user;
+            var query = from user in _context.Doctors 
+                join service in _context.Services on user.Id equals service.DoctorID
+                 where user.LastName == Query || user.FirstName == Query || service.Name == Query select user;
             
             foreach(var result in query)
             {
