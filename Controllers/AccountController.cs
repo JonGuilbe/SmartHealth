@@ -224,7 +224,7 @@ namespace SmartHealth.Controllers
             if (ModelState.IsValid)
             {
                 var user = new PatientUser { FirstName = model.FirstName, LastName = model.LastName, UserName = model.Email, Email = model.Email, DateOfBirth = model.DateOfBirth, 
-                 ZipCode = model.ZipCode, Ethnicity = model.Ethnicity, Sex = model.Sex, Insurance = model.Insurance, PhoneNumber = model.PhoneNumber};
+                 ZipCode = model.ZipCode, Ethnicity = model.Ethnicity, Sex = model.Sex,AccountType = "Patient", Insurance = model.Insurance, PhoneNumber = model.PhoneNumber};
                 var result = await _userManager.CreateAsync(user, model.Password);
                 using (var memoryStream = new MemoryStream())
                 {
@@ -267,7 +267,7 @@ namespace SmartHealth.Controllers
             if (ModelState.IsValid)
             {
                 var user = new DoctorUser { FirstName = model.FirstName, LastName = model.LastName, UserName = model.Email, Email = model.Email,
-                 Address = model.Address, PhoneNumber = model.PhoneNumber };
+                 Address = model.Address, PhoneNumber = model.PhoneNumber, AccountType = "Doctor" };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 using (var memoryStream = new MemoryStream())
                 {

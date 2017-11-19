@@ -12,7 +12,7 @@ namespace SmartHealth.Models
         public string Date { get; set; }
         public string DoctorID  { get; set; }
         public string PatientID  { get; set; }
-        public string Cost { get; set; }
+        public decimal Cost { get; set; }
         public string Service { get; set; }
         public TimeSpan[] Time { get; set; }
         public string Notes { get;  set; }

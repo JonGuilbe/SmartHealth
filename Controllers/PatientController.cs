@@ -8,6 +8,7 @@ using SmartHealth.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using SmartHealth.Data;
 
 namespace SmartHealth.Controllers 
 
@@ -15,14 +16,33 @@ namespace SmartHealth.Controllers
     [Authorize]
     public class PatientController : Controller
     {
-        public IActionResult Home()
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly ApplicationDbContext _context;
+
+        public PatientController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
-            return View();
+            _context = context;
+            _userManager = userManager;
         }
 
-        public IActionResult Profile()
+        public async Task<IActionResult> Home()
         {
-            return View();
+            var user =  await _userManager.GetUserAsync(HttpContext.User);
+            var userId = user.Id;
+            var query = from appointment in _context.Appointments where
+                        appointment.PatientID == userId select appointment;
+
+            return View(query);
+        }
+
+        public async Task<IActionResult> Profile(string id)
+        {
+            ApplicationUser user;
+            if (string.IsNullOrEmpty(id))
+                user = await _userManager.GetUserAsync(HttpContext.User);
+            else
+                user = await _userManager.FindByIdAsync(id);
+            return View(user);
         }
     }
 }

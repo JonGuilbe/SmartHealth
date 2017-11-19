@@ -1,11 +1,16 @@
+@model PatientUser
 @{
     ViewData["Title"] = "Profile";
 }
-
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="pstyle.css">
-<h2>Profile</h2>
 
+@if (Model.AccountType == "Doctor")
+{
+  <h2>This page is for patients only. Please click on your username to access your profile.</h2>
+}
+else {
+<h2>Profile for @Model.FirstName @Model.LastName</h2>
 <section>
     <!-- Demographics and medical records -->
      <div class="row row1" > <!--style="background-color: blue;" style="background-color: yellow;"-->
@@ -15,11 +20,14 @@
               <h2>Demographics</h2>
             </header>
            <div class="w3-container">
-             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <ul class="demographics">
+              <li>Date of Birth: @Model.DateOfBirth</li>
+              <li>Phone Number: @Model.PhoneNumber</li>
+              <li>Email: @Model.Email</li>
+              <li>Ethnicity: @Model.Ethnicity</li>
+              <li>Sex: @Model.Sex</li>
+            </ul>
            </div>
-           <footer class="w3-container w3-blue">
-             <h5>Footer</h5>
-           </footer>
           </div>
           <!-- Insurance -->
           <div class="w3-card-4 ins" style="width: 670px;" >
@@ -27,11 +35,8 @@
               <h2>Insurance</h2>
             </header>
             <div class="w3-container">
-             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+             <p>@Model.Insurance</p>
             </div>
-            <footer class="w3-container w3-blue">
-             <h5>Footer</h5>
-            </footer>
           </div>
   
           <!-- Account Settings -->
@@ -43,7 +48,7 @@
              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             </div>
             <footer class="w3-container w3-blue">
-             <h5>Footer</h5>
+             <h5>/*Footer*/</h5>
             </footer>
           </div>
       </div>
@@ -58,7 +63,7 @@
              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
            </div>
            <footer class="w3-container w3-blue">
-             <h5>Footer</h5>
+             <h5>/*Footer*/</h5>
            </footer>
           </div>
       </div>
@@ -67,7 +72,9 @@
   
      <!--  -->
   </section>
-  
-  <footer  id="wrapper">
-    <a href="#" class="btn btn-info"  role="button">Update Profile</a>
-  </footer>
+  @if (ViewData["id"] == null){
+    <footer  id="wrapper">
+      <a href="#" class="btn btn-info"  role="button">Update Profile</a>
+    </footer>
+  }
+}

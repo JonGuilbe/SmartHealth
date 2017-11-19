@@ -29,9 +29,10 @@ namespace SmartHealth.Controllers
         public IActionResult Result([FromQuery] string Query)
         {
             ViewData["Query"] = Query;
-            //Console.WriteLine(_context.Patients.FirstOrDefault().Ethnicity);
-            var query = from user in _context.Doctors where
-                        user.LastName == Query select user;
+            var query = from user in _context.Doctors 
+                join tempservice in _context.Services on user.Id equals tempservice.DoctorID into tempJoin
+                from service in tempJoin.DefaultIfEmpty()
+                where user.LastName == Query || user.FirstName == Query || service.Name == Query select user;
             
             foreach(var result in query)
             {
@@ -39,7 +40,6 @@ namespace SmartHealth.Controllers
             }
 
             ViewData["Result"] = query;
-            //await _context.Doctors.FirstOrDefaultAsync()
             return View(query);
         }
        

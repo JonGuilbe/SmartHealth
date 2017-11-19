@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.ValueGeneration;
 using SmartHealth.Data;
 using System;
 
-namespace SmartHealth.Data.Migrations
+namespace SmartHealth.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -128,38 +128,14 @@ namespace SmartHealth.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("SmartHealth.Data.Appointment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Cost");
-
-                    b.Property<string>("Date");
-
-                    b.Property<string>("DoctorID");
-
-                    b.Property<bool>("IsPrivate");
-
-                    b.Property<string>("Notes");
-
-                    b.Property<string>("PatientID");
-
-                    b.Property<string>("Service");
-
-                    b.Property<TimeSpan[]>("Time");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Appointments");
-                });
-
             modelBuilder.Entity("SmartHealth.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("AccessFailedCount");
+
+                    b.Property<string>("AccountType");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
@@ -211,6 +187,68 @@ namespace SmartHealth.Data.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("ApplicationUser");
+                });
+
+            modelBuilder.Entity("SmartHealth.Models.Appointment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<decimal>("Cost");
+
+                    b.Property<string>("Date");
+
+                    b.Property<string>("DoctorID");
+
+                    b.Property<bool>("IsPrivate");
+
+                    b.Property<string>("Notes");
+
+                    b.Property<string>("PatientID");
+
+                    b.Property<string>("Service");
+
+                    b.Property<TimeSpan[]>("Time");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Appointments");
+                });
+
+            modelBuilder.Entity("SmartHealth.Models.Message", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("DoctorID");
+
+                    b.Property<bool>("FromPatient");
+
+                    b.Property<string>("MessageString");
+
+                    b.Property<string>("PatientID");
+
+                    b.Property<string>("Time");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Messages");
+                });
+
+            modelBuilder.Entity("SmartHealth.Models.Service", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<decimal>("Cost");
+
+                    b.Property<string>("DoctorID");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Services");
                 });
 
             modelBuilder.Entity("SmartHealth.Models.DoctorUser", b =>

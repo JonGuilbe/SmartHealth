@@ -6,10 +6,28 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
+    var user = await (UserManager.GetUserAsync(User));
     <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">@UserManager.GetUserName(User)</a>
+                @if (user.AccountType == "Doctor")
+                {
+                    <a asp-area="" asp-controller="Doctor" asp-action="Home" title="Home">Dashboard</a>
+                }
+                @if (user.AccountType == "Patient")
+                {
+                    <a asp-area="" asp-controller="Patient" asp-action="Home" title="Home">Dashboard</a>
+                }
+            </li>
+            <li>
+                @if (user.AccountType == "Doctor")
+                {
+                    <a asp-area="" asp-controller="Doctor" asp-action="Profile" title="Profile">@UserManager.GetUserName(User)</a>
+                }
+                @if (user.AccountType == "Patient")
+                {
+                    <a asp-area="" asp-controller="Patient" asp-action="Profile" title="Profile">@UserManager.GetUserName(User)</a>
+                }
             </li>
             <li>
                 <button type="submit" class="btn btn-link navbar-btn navbar-link">Log out</button>
