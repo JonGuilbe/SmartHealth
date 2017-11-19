@@ -55,17 +55,24 @@ namespace SmartHealth.Controllers
             return View(data);
         }
         //TODO Fix this
-        public IActionResult AddService()
+        [HttpGet]
+        public IActionResult AddService(string returnUrl = null)
         {
+            ViewData["ReturnUrl"] = "/Doctor/Profile";
             return View();
         }
-
-        public async Task Add(ServiceAddViewModel model)
+        [HttpPost]
+        public async Task<IActionResult> AddService(ServiceAddViewModel model, string returnUrl = null)
         {
+            ViewData["ReturnUrl"] = "/Doctor/Profile";
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            var service = new Service { Name = model.Name, Cost = model.Cost, DoctorID = user.Id};
-            _context.Services.Add(service);
-            _context.SaveChanges();
+            if(ModelState.IsValid){
+                var service = new Service { Name = model.Name, Cost = model.Cost, DoctorID = user.Id};
+                _context.Services.Add(service);
+                _context.SaveChanges();
+                return Redirect(returnUrl);
+            }
+            return View(model);
         }
     }
 }

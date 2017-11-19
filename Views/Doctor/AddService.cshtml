@@ -3,11 +3,11 @@
     ViewData["Title"] = "Add Service";
 }
 
-<h2>Create an Appointment:</h2>
+<h2>Create Service</h2>
 <div class="row">
     <div class="col-md-4">
-        <form method="post" action="/Doctor/Add">
-            <h4>Add a service.</h4>
+        <form method="post" asp-route-returnurl="@ViewData["ReturnUrl"]">
+            <h4>Service Info</h4>
             <hr />
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
@@ -20,7 +20,7 @@
                 <input asp-for="Cost" class="form-control" placeholder="0.00"/>
                 <span asp-validation-for="Cost" class="text-danger"></span>
             </div>
-            <button type="submit" class="btn btn-default">Add this service.</button>
+            <button type="submit" class="btn btn-default">Update Page</button>
         </form>
     </div>
 </div>
