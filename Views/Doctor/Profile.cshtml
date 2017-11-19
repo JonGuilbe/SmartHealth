@@ -15,12 +15,12 @@ else {
     <div class="row row1" ><!--  style="background-color: blue;" -->
       <div class="col-lg-8"> <!--  style="background-color: yellow;" -->
           <div class="w3-card-4 ins" style="width: 800px;" >
-            <!-- insert calender code -->
+            <!-- insert calendar code -->
             <!-- x -->
             @if (@ViewData["id"] != null)
              {
               <div class="w3-container inbutton">
-              <a asp-area="" asp-controller="Appointment" asp-action="Create" asp-route-id='@ViewData["id"]'>Schedule Appointment with this doctor.</a>
+              <a class = "btn btn-info" role = "button" asp-area="" asp-controller="Appointment" asp-action="Create" asp-route-id='@ViewData["id"]'>Schedule Appointment</a>
               </div>
             }
           </div>
@@ -34,7 +34,7 @@ else {
             </ul>
             </div>
             <footer class="w3-container w3-blue">
-             <h5>Footer</h5>
+             <h5>/*Footer*/</h5>
             </footer>
           </div>
           <!-- Accepted Insurance -->
@@ -46,7 +46,7 @@ else {
              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             </div>
             <footer class="w3-container w3-blue">
-             <h5>Footer</h5>
+             <h5>/*Footer*/</h5>
             </footer>
           </div>
   
@@ -59,7 +59,7 @@ else {
              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             </div>
             <footer class="w3-container w3-blue">
-             <h5>Footer</h5>
+             <h5>/*Footer*/</h5>
             </footer>
           </div>
       </div>
@@ -77,16 +77,21 @@ else {
               }
              </ul>
            </div>
-           <div class="w3-container inbutton">
-             <a  asp-area="" asp-controller="Doctor" asp-action="AddService" class="btn btn-info"  role="button">Add Service</a>
-           </div>
+           <footer class="w3-container w3-blue">
+           @if (ViewData["id"] == null){
+             <div class="w3-container inbutton">
+               <a  asp-area="" asp-controller="Doctor" asp-action="AddService" class="btn btn-info"  role="button">Add Service</a>
+             </div>
+           }
+           </footer>
           </div>
       </div>
       
     </div> 
   </section>
-  
-  <footer  id="wrapper">
-    <a href="#" class="btn btn-info"  role="button">Update Profile</a>
-  </footer>
+  @if (ViewData["id"] == null){
+    <footer  id="wrapper">
+      <a href="#" class="btn btn-info"  role="button">Update Profile</a>
+    </footer>
+  }
 }
