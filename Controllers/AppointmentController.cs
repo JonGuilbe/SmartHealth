@@ -48,8 +48,10 @@ namespace SmartHealth.Controllers
         {
             ViewData["ReturnUrl"] = "/Patient/Home";
             var user = await _userManager.GetUserAsync(HttpContext.User);
+            //Console.WriteLine("THE ISSUE IS PROBABLY RIGHT HERE. THE SERVICE NAME IS " + model.Service);
+            var service = _context.Services.FirstOrDefault(i => i.Id == model.Service);
             if(ModelState.IsValid){
-                var appointment = new Appointment { Date = model.Date, DoctorID = id, PatientID = user.Id, Cost = 123, Service = "Placeholder", Notes = model.Notes };
+                var appointment = new Appointment { Date = model.Date, DoctorID = id, PatientID = user.Id, Cost = service.Cost, Service = service.Name, Notes = model.Notes };
                 _context.Appointments.Add(appointment);
                 _context.SaveChanges();
                 return Redirect(returnUrl);

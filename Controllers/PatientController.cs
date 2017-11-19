@@ -29,8 +29,9 @@ namespace SmartHealth.Controllers
         {
             var user =  await _userManager.GetUserAsync(HttpContext.User);
             var userId = user.Id;
-            var query = from appointment in _context.Appointments where
-                        appointment.PatientID == userId select appointment;
+            var query = from appointment in _context.Appointments.AsEnumerable() where
+                        appointment.PatientID == userId && ( DateTime.Parse(appointment.Date) >= DateTime.Now) == true
+                         select appointment;
 
             return View(query);
         }

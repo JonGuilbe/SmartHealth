@@ -29,8 +29,10 @@ namespace SmartHealth.Controllers
         {
             var user =  await _userManager.GetUserAsync(HttpContext.User);
             var userId = user.Id;
-            var query = from appointment in _context.Appointments where
-                        appointment.DoctorID == userId select appointment;
+            //Console.WriteLine("HELLO YES THIS IS THE DATE!!!!!: " + DateTime.Now.ToString("MM/dd/yyyy"));
+            var query = from appointment in _context.Appointments.AsEnumerable() where
+                        appointment.DoctorID == userId && ( DateTime.Parse(appointment.Date) >= DateTime.Now) == true
+                         select appointment;
             return View(query);
         }
 
@@ -51,7 +53,8 @@ namespace SmartHealth.Controllers
             }
 
             var services = from service in _context.Services where
-                           service.DoctorID == user.Id select service;
+                           service.DoctorID == user.Id 
+                           select service;
 
             var data = new DoctorViewModel();
             data.Doctor = (DoctorUser)user;

@@ -14,7 +14,7 @@ namespace SmartHealth.Models
 
         [Required]
         [Display(Name = "Service")]
-        public string Service { get; set ;}
+        public int Service { get; set ;}
 
         [Display(Name = "Time")]
         public string Time { get; set ;}
