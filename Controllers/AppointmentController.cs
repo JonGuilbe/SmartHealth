@@ -34,6 +34,13 @@ namespace SmartHealth.Controllers
         public IActionResult Create(string id, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = "/Patient/Home";
+            List<Service> serviceList = new List<Service>();
+            serviceList = (from service in _context.Services
+                          where service.DoctorID == id select service).ToList();
+
+            serviceList.Insert(0, new Service { Id = 0, Name = "Select"});
+
+            ViewBag.ServiceList = serviceList;
             return View();
         }
         [HttpPost]
@@ -42,7 +49,7 @@ namespace SmartHealth.Controllers
             ViewData["ReturnUrl"] = "/Patient/Home";
             var user = await _userManager.GetUserAsync(HttpContext.User);
             if(ModelState.IsValid){
-                var appointment = new Appointment { Date = model.Date, DoctorID = id, PatientID = user.Id, Cost = "123", Service = "Placeholder", Notes = model.Notes };
+                var appointment = new Appointment { Date = model.Date, DoctorID = id, PatientID = user.Id, Cost = 123, Service = "Placeholder", Notes = model.Notes };
                 _context.Appointments.Add(appointment);
                 _context.SaveChanges();
                 return Redirect(returnUrl);

@@ -25,9 +25,13 @@ namespace SmartHealth.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult Home()
+        public async Task<IActionResult> Home()
         {
-            return View();
+            var user =  await _userManager.GetUserAsync(HttpContext.User);
+            var userId = user.Id;
+            var query = from appointment in _context.Appointments where
+                        appointment.DoctorID == userId select appointment;
+            return View(query);
         }
 
         public async Task<IActionResult> Profile(string id)

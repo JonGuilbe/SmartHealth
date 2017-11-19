@@ -1,3 +1,4 @@
+@model IEnumerable<Appointment>
 @{
     ViewData["Title"] = "Home Dashboard";
 }
@@ -14,7 +15,11 @@
              </header>
          
              <div class="w3-container">
-               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+              <ul>
+                 @foreach (var app in Model) {
+                   <li>@Html.DisplayFor(x => app.Date) @Html.DisplayFor(x => app.Service)</li>
+                 }
+               </ul>
              </div>
               <!-- x -->
           </div>
