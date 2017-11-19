@@ -12,6 +12,16 @@
             <li>
                 @if (user.AccountType == "Doctor")
                 {
+                    <a asp-area="" asp-controller="Doctor" asp-action="Home" title="Home">Dashboard</a>
+                }
+                @if (user.AccountType == "Patient")
+                {
+                    <a asp-area="" asp-controller="Patient" asp-action="Home" title="Home">Dashboard</a>
+                }
+            </li>
+            <li>
+                @if (user.AccountType == "Doctor")
+                {
                     <a asp-area="" asp-controller="Doctor" asp-action="Profile" title="Profile">@UserManager.GetUserName(User)</a>
                 }
                 @if (user.AccountType == "Patient")
