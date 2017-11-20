@@ -10,7 +10,7 @@
   <h2>This page is for doctors only. Please click on your username to access your profile.</h2>
 }
 else {
-<img src="@Url.Action("UserPhotos", "Patient")" style="height:200px; width:auto;"/>
+<img src="@Url.Action("UserPhotos", "Patient", new { @id = @Model.Doctor.Id})" style="height:200px; width:auto;"/>
 <section>
     <!-- Calender -->
     <div class="row row1" ><!--  style="background-color: blue;" -->
