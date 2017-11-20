@@ -225,12 +225,12 @@ namespace SmartHealth.Controllers
             {
                 var user = new PatientUser { FirstName = model.FirstName, LastName = model.LastName, UserName = model.Email, Email = model.Email, DateOfBirth = model.DateOfBirth, 
                  ZipCode = model.ZipCode, Ethnicity = model.Ethnicity, Sex = model.Sex,AccountType = "Patient", Insurance = model.Insurance, PhoneNumber = model.PhoneNumber};
-                var result = await _userManager.CreateAsync(user, model.Password);
                 using (var memoryStream = new MemoryStream())
                 {
                   await model.UserPhoto.CopyToAsync(memoryStream);
                   user.UserPhoto = memoryStream.ToArray();
                 }
+                var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");

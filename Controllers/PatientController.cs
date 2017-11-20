@@ -45,5 +45,14 @@ namespace SmartHealth.Controllers
                 user = await _userManager.FindByIdAsync(id);
             return View(user);
         }
+
+        public async Task<FileContentResult> UserPhotos()
+        {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var img = user.UserPhoto;
+
+            return new FileContentResult(img, "image/jpeg");
+        }
+
     }
 }
