@@ -1,17 +1,17 @@
-@model PatientUser
+@model PatientViewModel
 @{
     ViewData["Title"] = "Profile";
 }
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="pstyle.css">
-
-@if (Model.AccountType == "Doctor")
+<--! This is not right -->
+@if (Model.Patient.AccountType == "Doctor" && ViewData["id"] == null)
 {
   <h2>This page is for patients only. Please click on your username to access your profile.</h2>
 }
 else {
-<h2>Profile for @Model.FirstName @Model.LastName</h2>
-<img src="@Url.Action("UserPhotos", "Patient", new { @id = @Model.Id })" style="height:200px; width:auto;"/>
+<h2>Profile for @Model.Patient.FirstName @Model.Patient.LastName</h2>
+<img src="@Url.Action("UserPhotos", "Patient", new { @id = @Model.Patient.Id })" style="height:200px; width:auto;"/>
 <section>
     <!-- Demographics and medical records -->
      <div class="row row1" > <!--style="background-color: blue;" style="background-color: yellow;"-->
@@ -22,21 +22,40 @@ else {
             </header>
            <div class="w3-container">
             <ul class="demographics">
-              <li>Date of Birth: @Model.DateOfBirth</li>
-              <li>Phone Number: @Model.PhoneNumber</li>
-              <li>Email: @Model.Email</li>
-              <li>Ethnicity: @Model.Ethnicity</li>
-              <li>Sex: @Model.Sex</li>
+              <li>Date of Birth: @Model.Patient.DateOfBirth</li>
+              <li>Phone Number: @Model.Patient.PhoneNumber</li>
+              <li>Email: @Model.Patient.Email</li>
+              <li>Ethnicity: @Model.Patient.Ethnicity</li>
+              <li>Sex: @Model.Patient.Sex</li>
             </ul>
            </div>
           </div>
+            @if (@ViewData["id"] == null)
+          {
+            <div class="w3-card-4 ins" style="width: 670px;" >
+            <header class="w3-container w3-blue">
+              <h2>Messages</h2>
+            </header>
+            <div class="w3-container">
+             <ul class="demographics">
+              @foreach (var msg in Model.Messages) {
+                  @if (!msg.FromPatient) {
+                  <li> 
+                  From: @Html.DisplayFor(x => msg.DoctorName)        
+                  @Html.DisplayFor(x => msg.MessageString) <a asp-area="" asp-controller="Message" asp-Action="Conversation" asp-route-id="@msg.DoctorID">Go To Conversation</a> </li>
+                  }
+              }
+              </ul>
+            </div>
+            </div>
+            }
           <!-- Insurance -->
           <div class="w3-card-4 ins" style="width: 670px;" >
             <header class="w3-container w3-blue">
               <h2>Insurance</h2>
             </header>
             <div class="w3-container">
-             <p>@Model.Insurance</p>
+             <p>@Model.Patient.Insurance</p>
             </div>
           </div>
   

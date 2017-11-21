@@ -43,7 +43,14 @@ namespace SmartHealth.Controllers
                 user = await _userManager.GetUserAsync(HttpContext.User);
             else
                 user = await _userManager.FindByIdAsync(id);
-            return View(user);
+            
+            var messageList = (from message in _context.Messages
+                           where message.PatientID == user.Id select message);
+            
+            var data = new PatientViewModel();
+            data.Patient = (PatientUser)user;
+            data.Messages = messageList;
+            return View(data);
         }
 
         public async Task<FileContentResult> UserPhotos(string id)
