@@ -23,6 +23,9 @@ else {
               <div class="w3-container inbutton">
               <a class = "btn btn-info" role = "button" asp-area="" asp-controller="Appointment" asp-action="Create" asp-route-id='@ViewData["id"]'>Schedule Appointment</a>
               </div>
+              <div class="w3-container inbutton">
+              <a class = "btn btn-info" role = "button" asp-area="" asp-controller="Message" asp-action="Conversation" asp-route-id='@ViewData["id"]'>Message This Doctor!</a>
+              </div>
             }
           </div>
           <div class="w3-card-4 ins" style="width: 670px;" >
@@ -38,6 +41,24 @@ else {
              <h5>/*Footer*/</h5>
             </footer>
           </div>
+          @if (@ViewData["id"] == null)
+          {
+            <div class="w3-card-4 ins" style="width: 670px;" >
+            <header class="w3-container w3-blue">
+              <h2>Messages</h2>
+            </header>
+            <div class="w3-container">
+             <ul class="demographics">
+              @foreach (var msg in Model.Messages) {
+                <li>@Html.DisplayFor(x => msg.MessageString)</li>
+            }
+            </ul>
+            </div>
+            <footer class="w3-container w3-blue">
+             <h5>/*Footer*/</h5>
+            </footer>
+            </div>
+          }
           <!-- Accepted Insurance -->
           <div class="w3-card-4 ins" style="width: 670px;" >
             <header class="w3-container w3-blue">

@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace SmartHealth.Models
 {
-    public class DoctorViewModel
+    public class ConversationModel
     {
-        public DoctorUser Doctor { get; set; }
-        public IQueryable<Service> Services { get; set; }
+        public Boolean IsDoctor { get; set; }
         public IQueryable<Message> Messages { get; set; }
+
+        public string text { get; set; }
+
+
     }
 }

@@ -10,5 +10,6 @@ namespace SmartHealth.Models
     public class DoctorUser : ApplicationUser
     {
         public string Address { get; set; }
+        //public TimeSpan[] WorkHours { get; set; }
     }
 }

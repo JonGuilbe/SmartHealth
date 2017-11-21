@@ -56,9 +56,13 @@ namespace SmartHealth.Controllers
                            service.DoctorID == user.Id 
                            select service;
 
+            var messageList = (from message in _context.Messages
+                           where message.DoctorID == user.Id select message);
+
             var data = new DoctorViewModel();
             data.Doctor = (DoctorUser)user;
             data.Services = services;
+            data.Messages = messageList;
             return View(data);
         }
         //TODO Fix this

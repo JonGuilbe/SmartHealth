@@ -1,0 +1,24 @@
+@model ConversationModel
+@{
+    ViewData["Title"] = "Conversation";
+}
+
+<h2>Conversation with: </h2>
+<div class="row">
+    <div class="col">
+        <ul>
+            @foreach (var msg in Model.Messages) {
+                <li>@Html.DisplayFor(x => msg.MessageString)</li>
+            }
+        </ul>
+        <form method="post" asp-route-returnurl="@ViewData["ReturnUrl"]">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="text"></label>
+                <input asp-for="text" class="form-control" placeholder="Enter your message here..."/>
+                <span asp-validation-for="text" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-default">Send Message</button>
+        </form>
+    </div>
+</div>
