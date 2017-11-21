@@ -3,12 +3,19 @@
     ViewData["Title"] = "Conversation";
 }
 
-<h2>Conversation with: </h2>
+<h2>Conversation with: @Model.DisplayName</h2>
 <div class="row">
     <div class="col">
         <ul>
             @foreach (var msg in Model.Messages) {
-                <li>@Html.DisplayFor(x => msg.MessageString)</li>
+                <li>
+                    @if (msg.FromPatient) {
+                        @Html.DisplayFor(x => msg.PatientName)
+                    }
+                    else {
+                        @Html.DisplayFor(x => msg.DoctorName)
+                    }
+                     : @Html.DisplayFor(x => msg.MessageString)</li>
             }
         </ul>
         <form method="post" asp-route-returnurl="@ViewData["ReturnUrl"]">

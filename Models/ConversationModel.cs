@@ -12,7 +12,7 @@ namespace SmartHealth.Models
         public IQueryable<Message> Messages { get; set; }
 
         public string text { get; set; }
-
+        public string DisplayName { get; set; }
 
     }
 }

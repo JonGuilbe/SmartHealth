@@ -27,6 +27,7 @@ namespace SmartHealth.Controllers
         public async Task<IActionResult> Conversation(string id, string returnUrl = null)
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
+            var otherUser = await _userManager.FindByIdAsync(id);
             string DocId;
             string PatId;
             if(user.AccountType == "Doctor")
@@ -45,6 +46,7 @@ namespace SmartHealth.Controllers
             var data = new ConversationModel();
             data.IsDoctor = (user.AccountType == "Doctor");
             data.Messages = messageList;
+            data.DisplayName = otherUser.FirstName + " " + otherUser.LastName;
             return View(data);
         }
 
