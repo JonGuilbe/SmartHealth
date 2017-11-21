@@ -50,7 +50,12 @@ else {
             <div class="w3-container">
              <ul class="demographics">
               @foreach (var msg in Model.Messages) {
-                <li>@Html.DisplayFor(x => msg.MessageString)</li>
+                
+                  @if (msg.FromPatient) {
+                  <li> 
+                  From: @Html.DisplayFor(x => msg.PatientName)        
+                  @Html.DisplayFor(x => msg.MessageString) <a asp-area="" asp-controller="Message" asp-Action="Conversation" asp-route-id="@msg.PatientID">Go To Conversation</a> </li>
+                  }
             }
             </ul>
             </div>

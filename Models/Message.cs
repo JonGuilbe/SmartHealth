@@ -14,5 +14,8 @@ namespace SmartHealth.Models
         public string PatientID  { get; set; }
         public string MessageString { get; set;}
         public Boolean FromPatient { get; set; }
+
+        public string DoctorName { get; set; }
+        public string PatientName { get; set;}
     }
 }

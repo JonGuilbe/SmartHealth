@@ -52,17 +52,24 @@ namespace SmartHealth.Controllers
         public async Task<IActionResult> Conversation(string id, ConversationModel model, string returnUrl = null)
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
+            var otherUser = await _userManager.FindByIdAsync(id);
             string DocId;
             string PatId;
+            string DocName = "";
+            string PatName = "";
             if(user.AccountType == "Doctor")
             {
                 DocId = user.Id;
                 PatId = id;
+                DocName += user.FirstName + " " + user.LastName; 
+                PatName += otherUser.FirstName + " " + otherUser.LastName;
             }
             else
             {
                 DocId = id;
                 PatId = user.Id;
+                PatName += user.FirstName + " " + user.LastName; 
+                DocName += otherUser.FirstName + " " + otherUser.LastName;
             }
             ViewData["ReturnUrl"] = "/Message/Conversation/"+ id;
             /*var messageList = (from message in _context.Messages
@@ -71,7 +78,7 @@ namespace SmartHealth.Controllers
             data.IsDoctor = (user.AccountType == "Doctor");
             data.Messages = messageList; */
             if(ModelState.IsValid){
-                var message = new Message { DoctorID = DocId, PatientID = PatId, MessageString = model.text, FromPatient = (user.AccountType == "Patient")};
+                var message = new Message { DoctorID = DocId, PatientID = PatId, MessageString = model.text, FromPatient = (user.AccountType == "Patient"), DoctorName = DocName, PatientName = PatName};
                 _context.Messages.Add(message);
                 _context.SaveChanges();
                 return Redirect(returnUrl);
