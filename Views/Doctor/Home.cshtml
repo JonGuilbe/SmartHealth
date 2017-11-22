@@ -3,41 +3,78 @@
 	ViewData["Title"] = "Home Dashboard";
 }
 
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="pstyle.css">
-<h2>Home Dashboard</h2>
+<h2>Home Dashboard</h2><hr />
 
 	<div class="container" >
 
 		<!-- APPOINTMENTS CALENDAR -->
-		<div class=" col-md-7">
+		<div class="col-md-5">
 		<div class="panel panel-default">
-			<div class="panel-heading" style="background-color: #28c574">
-				<h3 class="panel-title"><strong>Appointments</strong></h3>
+			<div class="panel-heading" style="background-color: #28c574; color: #ffffff; font-size: 28px; font-family:Arial">
+				Appointments
 			</div>
-			<div class="panel-body">
-				<!-- Appointment view calender code -->
-				Appointments view Calendar goes here <br>Lorem ipsum dolor sit amet, 
-				consectetur adipisicing elit, sed do eiusmod tempor incididunt ut 
-				labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-				exercitation ullamco laboris nisi ut aliquip ex ea commodo 
-				consequat.
+			<div class="panel-body" style="overflow-y: scroll; height: 250px">
+			<!-- insert appointment code -->
+				<table class="table">
+					<tr>
+						<th>Name</th>
+						<th>Time</th>
+						<th>Date</th>
+					</tr>
+					<tr>
+						<td>Appointment Name 1</td>
+						<td>3:45PM</td>
+						<td>03/04/17</td>
+					</tr>
+					<tr>
+						<td>Appointment Name 2</td>
+						<td>3:45PM</td>
+						<td>03/04/17</td>
+					</tr>
+					<tr>
+						<td>Appointment Name 3</td>
+						<td>3:45PM</td>
+						<td>03/04/17</td>
+					</tr>
+					<tr>
+						<td>Appointment Name 4</td>
+						<td>3:45PM</td>
+						<td>03/04/17</td>
+					</tr>
+					<tr>
+						<td>Appointment Name 5</td>
+						<td>3:45PM</td>
+						<td>03/04/17</td>
+					</tr>
+					<tr>
+						<td>Appointment Name 6</td>
+						<td>3:45PM</td>
+						<td>03/04/17</td>
+					</tr>
+					<tr>
+						<td>Appointment Name 7</td>
+						<td>3:45PM</td>
+						<td>03/04/17</td>
+					</tr>
+				</table>
+			<!-- x -->
 			</div>
 			<ul>
 				@foreach (var app in Model) {
 					<li>@Html.DisplayFor(x => app.Date) @Html.DisplayFor(x => app.Service) <a asp-area="" asp-controller="Appointment" asp-Action="ViewApp" asp-route-id="@app.Id">Details</a></li>
 				}
 			</ul>
+			<div class="panel-footer" style="background-color: #28c574; color: #ffffff; font-family: Arial">Footer</div>
 		</div>
 		</div>
-		 
-		<!-- EMPTY SPACING BETWEEN PANELS -->
-		<div class="col-md-1"></div>
 
 		<!-- AGENDA -->
-		<div class="col-md-4">
+		<div class="col-md-7">
 		<div class="panel panel-default">
-			<div class="panel-heading" style="background-color: #28c574">
-				<h3 class="panel-title"><strong>Agenda</strong></h3>
+			<div class="panel-heading" style="background-color: #28c574; color: #ffffff; font-size: 28px; font-family:Arial">
+				Agenda
 			</div>
 			<div class="panel-body">
 			<!-- insert appointment code -->
@@ -47,14 +84,15 @@
 				nisi ut aliquip ex ea commodo consequat.
 			<!-- x -->
 			</div>
+			<div class="panel-footer" style="background-color: #28c574; color: #ffffff; font-family: Arial">Footer</div>
 		</div>
 		</div>
 		 
 		<!-- MESSAGES -->
 		<div class="col-md-12">
 		<div class="panel panel-default">
-			<div class="panel-heading" style="background-color: #28c574">
-				<h3 class="panel-title"><Strong>Messages</Strong></h3>
+			<div class="panel-heading" style="background-color: #28c574; color: #ffffff; font-size: 28px; font-family:Arial">
+				Messages
 			</div>			
 			<div class="panel-body">
 				<!-- insert message code -->
@@ -63,7 +101,8 @@
 				enim ad minim veniam, quis nostrud exercitation ullamco laboris 
 				nisi ut aliquip ex ea commodo consequat.
 				<!-- x -->
-			</div>			
+			</div>	
+			<div class="panel-footer" style="background-color: #28c574; color: #ffffff; font-family: Arial">Footer</div>		
 		</div>
 		</div>
 
