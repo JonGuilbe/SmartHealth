@@ -46,10 +46,15 @@ namespace SmartHealth.Controllers
             
             var messageList = (from message in _context.Messages
                            where message.PatientID == user.Id select message);
+
+            var medicalHistory = from appointment in _context.Appointments.AsEnumerable() where
+                                 appointment.PatientID == user.Id && ( DateTime.Parse(appointment.Date) < DateTime.Now) == true
+                                 select appointment;
             
             var data = new PatientViewModel();
             data.Patient = (PatientUser)user;
             data.Messages = messageList;
+            data.History = medicalHistory;
             return View(data);
         }
 

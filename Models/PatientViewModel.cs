@@ -10,5 +10,7 @@ namespace SmartHealth.Models
     {
         public PatientUser Patient { get; set; }
         public IQueryable<Message> Messages { get; set; }
+
+        public IEnumerable<Appointment> History { get; set; }
     }
 }

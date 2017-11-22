@@ -1,0 +1,26 @@
+@model PdfViewModel
+@{
+    ViewData["Title"] = "SmartHealth Medical Record";
+}
+
+<h1>Medical Records for @Model.PatientName :</h1>
+<div class="container">
+    <div class = "col-md-7">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="background-color: #28c574">
+				<div class="panel-body">
+                    <ul>
+                    @foreach (var app in Model.Appointments) {
+                        <li> @Html.DisplayFor(x => app.Service), @Html.DisplayFor(x => app.Date)
+                            if(!app.IsPrivate) 
+                            { 
+                                @Html.DisplayFor(x => app.Notes) 
+                            }
+                        </li>
+                    }
+                    </ul>
+                </div>
+			</div>
+        </div>
+    </div>
+</div>

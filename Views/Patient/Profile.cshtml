@@ -76,11 +76,22 @@ else {
       <div class="col-lg-5" > <!-- style="background-color: red;" -->
           <div class="w3-card-4 ins" style="width: 470px;" >
             <header class="w3-container w3-blue">
-              <h2>Medical Records</h2>
+              <h2>Medical Records <a asp-area="" asp-controller="Pdf" asp-Action="Create" asp-route-id="@Model.Patient.Id" target="_blank">Get PDF of Records</a></h2>
             </header>
   
            <div class="w3-container">
-             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+             <ul>
+                    @foreach (var app in Model.History) {
+                        <li> @Html.DisplayFor(x => app.Service) , @Html.DisplayFor(x => app.Date)
+                            if(!app.IsPrivate) { 
+                              @Html.DisplayFor(x => app.Notes) 
+                              }
+                            else { 
+                              PRIVATE 
+                              }
+                        </li>
+                    }
+                  </ul>
            </div>
            <footer class="w3-container w3-blue">
              <h5>/*Footer*/</h5>

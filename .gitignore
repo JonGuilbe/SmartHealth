@@ -20,3 +20,6 @@ bin/Debug/netcoreapp2.0/SmartHealth.deps.json
 bin/Debug/netcoreapp2.0/SmartHealth.dll
 bin/Debug/netcoreapp2.0/SmartHealth.pdb
 bin/Debug/netcoreapp2.0/SmartHealth.runtimeconfig.dev.json
+libwkhtmltox.dll
+libwkhtmltox.dylib
+libwkhtmltox.so
