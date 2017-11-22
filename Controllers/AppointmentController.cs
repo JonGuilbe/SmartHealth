@@ -50,8 +50,12 @@ namespace SmartHealth.Controllers
             var user = await _userManager.GetUserAsync(HttpContext.User);
             //Console.WriteLine("THE ISSUE IS PROBABLY RIGHT HERE. THE SERVICE NAME IS " + model.Service);
             var service = _context.Services.FirstOrDefault(i => i.Id == model.Service);
+            var StartTime = DateTime.ParseExact(model.Time, "h:mm tt", System.Globalization.CultureInfo.CurrentCulture);
+            var AddDuration = new TimeSpan(0,0,service.Duration, 0);
+            var EndTime = StartTime.Add(AddDuration);
+            var endtime = EndTime.ToString("h:mm tt");
             if(ModelState.IsValid){
-                var appointment = new Appointment { Date = model.Date, DoctorID = id, PatientID = user.Id, Cost = service.Cost, Service = service.Name, Notes = model.Notes };
+                var appointment = new Appointment { Date = model.Date, DoctorID = id, PatientID = user.Id, Cost = service.Cost, Service = service.Name, Notes = model.Notes, starttime = model.Time, endtime = endtime }; //Fix duration thing at some point
                 _context.Appointments.Add(appointment);
                 _context.SaveChanges();
                 return Redirect(returnUrl);

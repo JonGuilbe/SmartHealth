@@ -12,9 +12,10 @@ using System;
 namespace SmartHealth.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171122191313_InitialCreate4")]
+    partial class InitialCreate4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -202,6 +203,8 @@ namespace SmartHealth.Migrations.ApplicationDb
 
                     b.Property<string>("DoctorID");
 
+                    b.Property<int>("Duration");
+
                     b.Property<bool>("IsPrivate");
 
                     b.Property<string>("Notes");
@@ -210,9 +213,7 @@ namespace SmartHealth.Migrations.ApplicationDb
 
                     b.Property<string>("Service");
 
-                    b.Property<string>("endtime");
-
-                    b.Property<string>("starttime");
+                    b.Property<DateTime>("StartTime");
 
                     b.HasKey("Id");
 
@@ -232,11 +233,11 @@ namespace SmartHealth.Migrations.ApplicationDb
 
                     b.Property<string>("MessageString");
 
+                    b.Property<DateTime>("MessageTime");
+
                     b.Property<string>("PatientID");
 
                     b.Property<string>("PatientName");
-
-                    b.Property<string>("messagetime");
 
                     b.HasKey("Id");
 
@@ -267,9 +268,9 @@ namespace SmartHealth.Migrations.ApplicationDb
 
                     b.Property<string>("Address");
 
-                    b.Property<string>("endtime");
+                    b.Property<DateTime>("WorkEnd");
 
-                    b.Property<string>("starttime");
+                    b.Property<DateTime>("WorkStart");
 
                     b.ToTable("DoctorUser");
 

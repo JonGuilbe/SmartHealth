@@ -14,7 +14,8 @@ namespace SmartHealth.Models
         public string PatientID  { get; set; }
         public decimal Cost { get; set; }
         public string Service { get; set; }
-        public TimeSpan[] Time { get; set; }
+        public string starttime { get; set; }
+        public string endtime { get; set; }
         public string Notes { get;  set; }
         public Boolean IsPrivate { get; set; }
     }

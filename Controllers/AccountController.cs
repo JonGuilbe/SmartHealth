@@ -267,7 +267,7 @@ namespace SmartHealth.Controllers
             if (ModelState.IsValid)
             {
                 var user = new DoctorUser { FirstName = model.FirstName, LastName = model.LastName, UserName = model.Email, Email = model.Email,
-                 Address = model.Address, PhoneNumber = model.PhoneNumber, AccountType = "Doctor" };
+                 Address = model.Address, PhoneNumber = model.PhoneNumber, AccountType = "Doctor", starttime = model.starttime, endtime = model.endtime };
                 using (var memoryStream = new MemoryStream())
                 {
                    await model.UserPhoto.CopyToAsync(memoryStream);

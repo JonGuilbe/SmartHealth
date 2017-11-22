@@ -78,7 +78,7 @@ namespace SmartHealth.Controllers
             ViewData["ReturnUrl"] = "/Doctor/Profile";
             var user = await _userManager.GetUserAsync(HttpContext.User);
             if(ModelState.IsValid){
-                var service = new Service { Name = model.Name, Cost = model.Cost, DoctorID = user.Id};
+                var service = new Service { Name = model.Name, Cost = model.Cost, DoctorID = user.Id, Duration = model.Duration};
                 _context.Services.Add(service);
                 _context.SaveChanges();
                 return Redirect(returnUrl);

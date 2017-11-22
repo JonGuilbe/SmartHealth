@@ -11,5 +11,13 @@ namespace SmartHealth.Models.AccountViewModels
         [Required]
         [Display(Name = "Address")]
         public string Address { get; set; }
+
+        [Required]
+        [Display(Name = "Start of Working Hours")]
+        public string starttime { get; set; }
+
+        [Required]
+        [Display(Name = "End of Working Hours")]
+        public string endtime { get; set; }
     }
 }

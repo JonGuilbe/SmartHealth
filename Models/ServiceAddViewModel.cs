@@ -14,5 +14,8 @@ namespace SmartHealth.Models
 
         [Display(Name = "Cost")]
         public decimal Cost { get; set ;}
+
+        [Display(Name = "Duration")]
+        public int Duration { get; set ;}
     }
 }

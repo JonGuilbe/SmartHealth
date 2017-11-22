@@ -12,5 +12,6 @@ namespace SmartHealth.Models
         public string Name { get; set; }
         public decimal Cost { get; set; }
         public string DoctorID  { get; set; }
+        public int Duration { get; set; }
     }
 }
