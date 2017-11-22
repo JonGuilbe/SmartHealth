@@ -1,100 +1,176 @@
 @model PatientViewModel
 @{
-    ViewData["Title"] = "Profile";
+	ViewData["Title"] = "Profile";
 }
+
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="pstyle.css">
-<--! This is not right -->
+
+<!-- This is not right -->
 @if (Model.Patient.AccountType == "Doctor" && ViewData["id"] == null)
 {
-  <h2>This page is for patients only. Please click on your username to access your profile.</h2>
+	<h2>This page is for patients only. Please click on your username to access your profile.</h2>
 }
-else {
-<h2>Profile for @Model.Patient.FirstName @Model.Patient.LastName</h2>
-<img src="@Url.Action("UserPhotos", "Patient", new { @id = @Model.Patient.Id })" style="height:200px; width:auto;"/>
-<section>
-    <!-- Demographics and medical records -->
-     <div class="row row1" > <!--style="background-color: blue;" style="background-color: yellow;"-->
-      <div class="col-lg-7" >
-          <div class="w3-card-4 ins" style="width: 670px;" >
-            <header class="w3-container w3-blue">
-              <h2>Demographics</h2>
-            </header>
-           <div class="w3-container">
-            <ul class="demographics">
-              <li>Date of Birth: @Model.Patient.DateOfBirth</li>
-              <li>Phone Number: @Model.Patient.PhoneNumber</li>
-              <li>Email: @Model.Patient.Email</li>
-              <li>Ethnicity: @Model.Patient.Ethnicity</li>
-              <li>Sex: @Model.Patient.Sex</li>
-            </ul>
-           </div>
-          </div>
-            @if (@ViewData["id"] == null)
-          {
-            <div class="w3-card-4 ins" style="width: 670px;" >
-            <header class="w3-container w3-blue">
-              <h2>Messages</h2>
-            </header>
-            <div class="w3-container">
-             <ul class="demographics">
-              @foreach (var msg in Model.Messages) {
-                  @if (!msg.FromPatient) {
-                  <li> 
-                  From: @Html.DisplayFor(x => msg.DoctorName)        
-                  @Html.DisplayFor(x => msg.MessageString) <a asp-area="" asp-controller="Message" asp-Action="Conversation" asp-route-id="@msg.DoctorID">Go To Conversation</a> </li>
-                  }
-              }
-              </ul>
-            </div>
-            </div>
-            }
-          <!-- Insurance -->
-          <div class="w3-card-4 ins" style="width: 670px;" >
-            <header class="w3-container w3-blue">
-              <h2>Insurance</h2>
-            </header>
-            <div class="w3-container">
-             <p>@Model.Patient.Insurance</p>
-            </div>
-          </div>
-  
-          <!-- Account Settings -->
-          <div class="w3-card-4 ins" style="width: 670px;" >
-            <header class="w3-container w3-blue">
-              <h2>Account Settings</h2>
-            </header>
-            <div class="w3-container">
-             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            </div>
-            <footer class="w3-container w3-blue">
-             <h5>/*Footer*/</h5>
-            </footer>
-          </div>
-      </div>
-      <!-- Second column -->
-      <div class="col-lg-5" > <!-- style="background-color: red;" -->
-          <div class="w3-card-4 ins" style="width: 470px;" >
-            <header class="w3-container w3-blue">
-              <h2>Medical Records</h2>
-            </header>
-  
-           <div class="w3-container">
-             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-           </div>
-           <footer class="w3-container w3-blue">
-             <h5>/*Footer*/</h5>
-           </footer>
-          </div>
-      </div>
-      
-    </div> 
-  
-     <!--  -->
-  </section>
-  @if (ViewData["id"] == null){
-    <footer  id="wrapper">
-      <a href="#" class="btn btn-info"  role="button">Update Profile</a>
-    </footer>
-  }
+else 
+{	
+	<div class="clearfix content-heading">
+		<br><br>
+		<img src="@Url.Action("UserPhotos", "Patient", new { @id = @Model.Patient.Id })" style="height:175px; width:175px;" class="img-rounded pull-left"/>
+		<h2><strong>&nbsp; &nbsp;@Model.Patient.FirstName @Model.Patient.LastName</strong></h2>
+		<br>
+	</div>
+	<hr />
+
+	<section>
+		<!-- DEMOGRAPHICS AND MEDICAL RECORDS -->
+		<div class="row">
+			<div class="col-md-5">
+				<div class="w3-card-4 ins">
+					<header class="w3-container w3-blue">
+						<h2>Demographics</h2>
+					</header>
+					<div class="container">
+						<ul>
+							<p>
+								<li><strong>Date of Birth:</strong> @Model.Patient.DateOfBirth</li>
+								<li><strong>Phone Number:</strong> @Model.Patient.PhoneNumber</li>
+								<li><strong>Email:</strong> @Model.Patient.Email</li>
+								<li><strong>Ethnicity:</strong> @Model.Patient.Ethnicity</li>
+								<li><strong>Sex:</strong> @Model.Patient.Sex</li>
+							</p>
+						</ul>
+					</div>
+				</div>
+
+				<!-- INSURANCE -->
+				<div class="w3-card-4 ins">
+					<header class="w3-container w3-blue">
+						<h2>Insurance</h2>
+					</header>
+					<div class="w3-container">
+						<p>
+							<ul>
+								<li>@Model.Patient.Insurance</li>
+							</ul>
+						</p>
+					</div>
+				</div>
+	
+				<!-- ACCOUNT SETTINGS -->
+				<div class="w3-card-4 ins">
+					<header class="w3-container w3-blue">
+						<h2>Account Settings</h2>
+					</header>
+					<div class="w3-container">
+						<p>
+							<ul>
+								<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+							</ul>
+						</p>
+					</div>
+					<footer class="w3-container w3-blue">
+						<h5>/*Footer*/</h5>
+					</footer>
+				</div>
+			</div>
+
+			<!-- SECOND COLUMN -->
+			<div class="col-md-7" >
+				<div class="w3-card-4 ins">
+					<header class="w3-container w3-blue">
+						<h2>Medical Records</h2>
+					</header>
+
+					<!-- Add functionality for privating medical records, and doctor/patient adding in info -->
+					<div class="w3-container">
+						<table class="table">
+							<tr>
+								<th>Private</th>
+								<th>Description</th>
+								<th>Date</th>
+							</tr>
+							<tr>
+								<th>
+									<div class="input-group">
+										<span class="input-group-addon">
+											<input type="checkbox" aria-label="...">
+										</span>
+									</div>
+								</th>
+								<th>Lorem ipsum dolor sit amet.</th>
+								<th>03/20/17</th>
+							</tr>
+							<tr>
+								<th>
+									<div class="input-group">
+										<span class="input-group-addon">
+											<input type="checkbox" aria-label="...">
+										</span>
+									</div>
+								</th>
+								<th>Consectetur adipisicing elit, sed do eiusmod tempor incididunt.</th>
+								<th>03/21/17<th>
+							</tr>
+							<tr>
+								<th>
+									<div class="input-group">
+										<span class="input-group-addon">
+											<input type="checkbox" aria-label="...">
+										</span>
+									</div>
+								</th>
+								<th>Ut labore et dolore magna aliqua. Ut enim ad minim veniam. </th>
+								<th>05/15/17</th>
+							</tr>
+							<tr>
+								<th>
+									<div class="input-group">
+										<span class="input-group-addon">
+											<input type="checkbox" aria-label="...">
+										</span>
+									</div>
+								</th>
+								<th>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</th>
+								<th>09/28/16</th>
+							</tr>
+							<tr>
+								<th>
+									<div class="input-group">
+										<span class="input-group-addon">
+											<input type="checkbox" aria-label="...">
+										</span>
+									</div>
+								</th>
+								<th>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</th>
+								<th><center>-----</center></th>
+							</tr>
+							<tr>
+								<th>
+									<div class="input-group">
+										<span class="input-group-addon">
+											<input type="checkbox" aria-label="...">
+										</span>
+									</div>
+								</th>
+								<th>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</th>
+								<th>02/14/15</th>
+							</tr>
+
+						</table>
+					</div>
+					<footer class="w3-container w3-blue">
+						<h5>/*Footer*/</h5>
+					</footer>
+				</div>
+			</div>		
+		</div> 
+	</section>
+
+	<section>
+		@if (ViewData["id"] == null){
+			<footer id="wrapper">
+				<a href="#" class="btn btn-primary"  role="button">Update Profile</a>
+			</footer>
+		}
+	</section>
 }
