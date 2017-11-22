@@ -1,48 +1,71 @@
 @model IEnumerable<Appointment>
 @{
-    ViewData["Title"] = "Home Dashboard";
+	ViewData["Title"] = "Home Dashboard";
 }
 
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="pstyle.css">
-<h2>Home Dashboard</h2>
 
-      <div class="w3-display-container" >
-          <div class="w3-card-4" style="width:35%;">
-              <!-- insert calender code -->
-             <header class="w3-container w3-blue">
-               <h3>Appointments</h3>
-             </header>
-         
-             <div class="w3-container">
-               <ul>
-                 @foreach (var app in Model) {
-                   <li>@Html.DisplayFor(x => app.Date) @Html.DisplayFor(x => app.Service) <a asp-area="" asp-controller="Appointment" asp-Action="ViewApp" asp-route-id="@app.Id">Details</a></li>
-                 }
-               </ul>
-             </div>
-              <!-- x -->
-          </div>
-         
-          <div class="w3-card-4 w3-display-topright" style="width:57%;">
-             <header class="w3-container w3-red">
-               <h3>Agenda</h3>
-             </header>
-              <!-- insert appointment code -->
-             <div class="w3-container">
-               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-             </div>
-               <!-- x -->
-          </div>
-         
-          <div class="w3-card-4 greencard" style="width:100%;">
-           <header class="w3-container w3-green w3-center">
-             <h3>Messages</h3>
-           </header>
-             <!-- insert message code -->
-           <div class="w3-container">
-             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-           </div>
-              <!-- x -->
-          </div>
-      </div>
+<h2>Home Dashboard</h2><hr />
+
+	<div class="container" >
+
+		<!-- BASIC CALENDAR -->
+		<div class=" col-md-7">
+		<div class="panel panel-default">
+			<div class="panel-heading" style="background-color: #28c574">
+				<h3 class="panel-title"><strong>Calendar</strong></h3>
+			</div>
+			<div class="panel-body">
+				<!-- insert calender code -->
+				Basic calendar goes here <br>Lorem ipsum dolor sit amet, consectetur 
+				adipisicing elit, sed do eiusmod tempor incididunt ut labore et 
+				dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
+				exercitation ullamco laboris nisi ut aliquip ex ea commodo 
+				consequat.
+			</div>
+			<ul>
+				@foreach (var app in Model) {
+					<li>@Html.DisplayFor(x => app.Date) @Html.DisplayFor(x => app.Service) <a asp-area="" asp-controller="Appointment" asp-Action="ViewApp" asp-route-id="@app.Id">Details</a></li>
+				}
+			</ul>
+		</div>
+		</div>
+		 
+		<!-- EMPTY SPACING BETWEEN PANELS -->
+		<div class="col-md-1"></div>
+
+		<!-- APPOINTMENTS LIST -->
+		<div class="col-md-4">
+		<div class="panel panel-default">
+			<div class="panel-heading" style="background-color: #28c574">
+				<h3 class="panel-title"><strong>Appointments</strong></h3>
+			</div>
+			<div class="panel-body">
+			<!-- insert appointment code -->
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do 
+				eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
+				enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+				nisi ut aliquip ex ea commodo consequat.
+			<!-- x -->
+			</div>
+		</div>
+		</div>
+		 
+		<!-- MESSAGES -->
+		<div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading" style="background-color: #28c574">
+				<h3 class="panel-title"><Strong>Messages</Strong></h3>
+			</div>			
+			<div class="panel-body">
+				<!-- insert message code -->
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do 
+				eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
+				enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+				nisi ut aliquip ex ea commodo consequat.
+				<!-- x -->
+			</div>			
+		</div>
+		</div>
+
+	</div>
