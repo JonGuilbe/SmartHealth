@@ -12,25 +12,25 @@
             <li>
                 @if (user.AccountType == "Doctor")
                 {
-                    <a asp-area="" asp-controller="Doctor" asp-action="Home" title="Home">Dashboard</a>
+                    <a asp-area="" asp-controller="Doctor" asp-action="Home" title="Home" class="navbar-brand" style="color:#ffffff; font-size: 18px; font-family: sans-serif">Dashboard</a>
                 }
                 @if (user.AccountType == "Patient")
                 {
-                    <a asp-area="" asp-controller="Patient" asp-action="Home" title="Home">Dashboard</a>
+                    <a asp-area="" asp-controller="Patient" asp-action="Home" title="Home"  style="color:#ffffff; font-size: 18px; font-family: sans-serif">Dashboard</a>
                 }
             </li>
             <li>
                 @if (user.AccountType == "Doctor")
                 {
-                    <a asp-area="" asp-controller="Doctor" asp-action="Profile" title="Profile">@UserManager.GetUserName(User)</a>
+                    <a asp-area="" asp-controller="Doctor" asp-action="Profile" title="Profile"  style="color:#ffffff; font-size: 18px; font-family: sans-serif">@UserManager.GetUserName(User)</a>
                 }
                 @if (user.AccountType == "Patient")
                 {
-                    <a asp-area="" asp-controller="Patient" asp-action="Profile" title="Profile">@UserManager.GetUserName(User)</a>
+                    <a asp-area="" asp-controller="Patient" asp-action="Profile" title="Profile"  style="color:#ffffff; font-size: 18px; font-family: sans-serif">@UserManager.GetUserName(User)</a>
                 }
             </li>
             <li>
-                <button type="submit" class="btn btn-link navbar-btn navbar-link">Log out</button>
+                <button type="submit" class="btn btn-link navbar-btn navbar-link" style="color:#ffffff; font-size: 18px; text-decoration: none; font-family: sans-serif">Log out</button>
             </li>
         </ul>
     </form>
@@ -38,7 +38,7 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li><a asp-area="" asp-controller="Home" asp-action="Register">Register</a></li>
-        <li><a asp-area="" asp-controller="Account" asp-action="Login">Log in</a></li>
+        <li><a asp-area="" asp-controller="Home" asp-action="Register" class="navbar-brand" style="color:#ffffff; font-family: sans-serif">Register</a></li>
+        <li><a asp-area="" asp-controller="Account" asp-action="Login" class="navbar-brand" style="color:#ffffff; font-family: sans-serif">Log in</a></li>
     </ul>
 }
