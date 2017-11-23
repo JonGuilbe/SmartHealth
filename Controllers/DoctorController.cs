@@ -33,7 +33,14 @@ namespace SmartHealth.Controllers
             var query = from appointment in _context.Appointments.AsEnumerable() where
                         appointment.DoctorID == userId && ( DateTime.Parse(appointment.Date) >= DateTime.Now) == true
                          select appointment;
-            return View(query);
+
+            var messageList = (from message in _context.Messages
+                           where message.DoctorID == user.Id && message.FromPatient select message);
+
+            var data = new DoctorViewModel();
+            data.Appointments = query;
+            data.Messages = messageList;
+            return View(data);
         }
 
         public async Task<IActionResult> Profile(string id)
@@ -56,13 +63,9 @@ namespace SmartHealth.Controllers
                            service.DoctorID == user.Id 
                            select service;
 
-            var messageList = (from message in _context.Messages
-                           where message.DoctorID == user.Id select message);
-
             var data = new DoctorViewModel();
             data.Doctor = (DoctorUser)user;
             data.Services = services;
-            data.Messages = messageList;
             return View(data);
         }
         //TODO Fix this
