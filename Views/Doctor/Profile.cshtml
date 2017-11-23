@@ -21,12 +21,12 @@ else
 	<div class="clearfix content-heading">
 		<br><br>
 		<img src="@Url.Action("UserPhotos", "Patient", new { @id = @Model.Doctor.Id})" style="height:175px; width:175px;" class="img-rounded pull-left"/>
-		<h2><strong>&nbsp; &nbsp;Profile for @Model.Doctor.FirstName @Model.Doctor.LastName</strong></h2>
+		<h2 style="margin-top:100px;"><strong>&nbsp; &nbsp;Profile for @Model.Doctor.FirstName @Model.Doctor.LastName</strong></h2>
 		<br>
 	</div>
 	<hr />
 
-	<section style="background: linear-gradient(to bottom left, #66ffff 0%, #0099ff 100%);">
+	<section>
 		<div class="row" >
 			<div class="col-md-8"> 
 				<div class="w3-card-4 ins" >
@@ -74,6 +74,7 @@ else
 						</ul>
 					</div>
 				</div>
+				<br><br>
 
 				<!-- ACCEPTED INSURANCE -->
 				<div class="w3-card-4 ins" >
@@ -150,7 +151,7 @@ else
 	<section>
 		@if (ViewData["id"] == null){
 			<footer  id="wrapper">
-				<a href="#" class="btn btn-primary"  role="button">Update Profile</a>
+				<a href="#" class="btn btn-info"  role="button">Update Profile</a>
 			</footer>
 		}
 	</section>
