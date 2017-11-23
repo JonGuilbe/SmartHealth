@@ -79,8 +79,9 @@ namespace SmartHealth.Controllers
             var data = new ConversationModel(); 
             data.IsDoctor = (user.AccountType == "Doctor");
             data.Messages = messageList; */
+            var CurrentTime = DateTime.Now.ToString("M'/'d'/'yyyy h:mm tt");
             if(ModelState.IsValid){
-                var message = new Message { DoctorID = DocId, PatientID = PatId, MessageString = model.text, FromPatient = (user.AccountType == "Patient"), DoctorName = DocName, PatientName = PatName};
+                var message = new Message { DoctorID = DocId, PatientID = PatId, MessageString = model.text, FromPatient = (user.AccountType == "Patient"), DoctorName = DocName, PatientName = PatName, messagetime = CurrentTime};
                 _context.Messages.Add(message);
                 _context.SaveChanges();
                 return Redirect(returnUrl);
