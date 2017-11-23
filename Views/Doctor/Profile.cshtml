@@ -49,9 +49,9 @@ else
 							consequat.
 						</p>
 					</div>
-					<footer class="w3-container w3-blue">
+					<!-- <footer class="w3-container w3-blue">
 						<h5>/*Footer*/</h5>
-					</footer>
+					</footer> -->
 				</div>
 				<br><br>
 				
@@ -68,6 +68,7 @@ else
 						</ul>
 					</div>
 				</div>
+				<br><br>
 				<!-- @if (@ViewData["id"] == null)
 				{
 					<div class="w3-card-4 ins" >
@@ -109,7 +110,7 @@ else
 						</p>
 					</div>
 				</div>
-		
+		        <br><br>
 				<!-- ACCOUNT SETTINGS -->
 				<div class="w3-card-4 ins">
 					<header class="w3-container w3-blue">
@@ -122,12 +123,12 @@ else
 							</ul>
 						</p>
 					</div>
-					<footer class="w3-container w3-blue">
+					<!-- <footer class="w3-container w3-blue">
 						<h5>/*Footer*/</h5>
-					</footer>
+					</footer> -->
 				</div>
 			</div>
-
+            
 			<!-- SECOND COLUMN -->
 			<div class="col-md-4" > 
 				<div class="w3-card-4 ins" >
@@ -149,11 +150,13 @@ else
 						}
 						</table>
 					</div>
-					<footer class="w3-container w3-blue">
+					<br>
+					<footer class="w3-container w3-white">
 						@if (ViewData["id"] == null){
 							<div class="w3-container inbutton">
-								<a  asp-area="" asp-controller="Doctor" asp-action="AddService" class="btn btn-primary pull-right"  role="button">Add Service</a>
+								<a  asp-area="" asp-controller="Doctor" asp-action="AddService" class="btn btn-info pull-right"  role="button">Add Service</a>
 							</div>
+							 <br>
 						}
 					</footer>
 				</div>
@@ -162,6 +165,7 @@ else
 		</div> 
 	</section>
 
+    <br><br>
 	<section>
 		@if (ViewData["id"] == null){
 			<footer  id="wrapper">
