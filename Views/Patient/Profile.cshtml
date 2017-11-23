@@ -5,6 +5,11 @@
 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="pstyle.css">
+<style>
+	.ins{
+		background-color: white;
+	}
+</style>
 
 <!-- This is not right -->
 @if (Model.Patient.AccountType == "Doctor" && ViewData["id"] == null)
@@ -13,10 +18,11 @@
 }
 else 
 {	
+	<body style="background: linear-gradient(to bottom left, #c6e8f8 0%, rgb(243, 241, 92) 100%);">
 	<div class="clearfix content-heading">
 		<br><br>
 		<img src="@Url.Action("UserPhotos", "Patient", new { @id = @Model.Patient.Id })" style="height:175px; width:175px;" class="img-rounded pull-left"/>
-		<h2><strong>&nbsp; &nbsp;@Model.Patient.FirstName @Model.Patient.LastName</strong></h2>
+		<h2 style="margin-top:100px;"><strong>&nbsp; &nbsp;@Model.Patient.FirstName @Model.Patient.LastName</strong></h2>
 		<br>
 	</div>
 	<hr />
@@ -113,4 +119,5 @@ else
 			</footer>
 		}
 	</section>
+</body>
 }
