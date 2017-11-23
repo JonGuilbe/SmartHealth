@@ -11,5 +11,6 @@ namespace SmartHealth.Models
         public DoctorUser Doctor { get; set; }
         public IQueryable<Service> Services { get; set; }
         public IQueryable<Message> Messages { get; set; }
+        public IEnumerable<Appointment> Appointments { get; set; }
     }
 }

@@ -8,14 +8,26 @@
     <div class="col">
         <ul>
             @foreach (var msg in Model.Messages) {
-                <li>
-                    @if (msg.FromPatient) {
-                        @Html.DisplayFor(x => msg.PatientName)
+                @if (msg.FromPatient) {
+                    <text>
+                    @if (@Model.IsDoctor) {
+                        <li style="text-align: left"> Sent at @Html.DisplayFor(x=> msg.messagetime) , @Html.DisplayFor(x => msg.PatientName): @Html.DisplayFor(x => msg.MessageString) </li>
                     }
-                    else {
-                        @Html.DisplayFor(x => msg.DoctorName)
+                    @if (!@Model.IsDoctor) {
+                        <li style="text-align: right"> Sent at @Html.DisplayFor(x=> msg.messagetime) , @Html.DisplayFor(x => msg.PatientName): @Html.DisplayFor(x => msg.MessageString)</li>
                     }
-                     : @Html.DisplayFor(x => msg.MessageString)</li>
+                    </text>
+                }
+                @if (!msg.FromPatient) {
+                    <text>
+                    @if (@Model.IsDoctor) {
+                        <li style="text-align: right"> Sent at @Html.DisplayFor(x=> msg.messagetime) , @Html.DisplayFor(x => msg.DoctorName): @Html.DisplayFor(x => msg.MessageString) </li>
+                    }
+                    @if (!@Model.IsDoctor) {
+                        <li style="text-align: left"> Sent at @Html.DisplayFor(x=> msg.messagetime) , @Html.DisplayFor(x => msg.DoctorName): @Html.DisplayFor(x => msg.MessageString) </li>
+                    }
+                    </text>
+                }
             }
         </ul>
         <form method="post" asp-route-returnurl="@ViewData["ReturnUrl"]">

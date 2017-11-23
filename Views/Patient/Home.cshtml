@@ -1,4 +1,4 @@
-@model IEnumerable<Appointment>
+@model PatientViewModel
 @{
 	ViewData["Title"] = "Home Dashboard";
 }
@@ -25,7 +25,7 @@
 				consequat.
 			</div>
 			<ul>
-				@foreach (var app in Model) {
+				@foreach (var app in Model.Appointments) {
 					<li>@Html.DisplayFor(x => app.Date) @Html.DisplayFor(x => app.Service) <a asp-area="" asp-controller="Appointment" asp-Action="ViewApp" asp-route-id="@app.Id">Details</a></li>
 				}
 			</ul>
@@ -96,12 +96,15 @@
 				Messages
 			</div>			
 			<div class="panel-body">
-				<!-- insert message code -->
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do 
-				eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
-				enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-				nisi ut aliquip ex ea commodo consequat.
-				<!-- x -->
+				<ul>
+					@foreach (var msg in Model.Messages) 
+					{
+						<li> 
+							From: @Html.DisplayFor(x => msg.DoctorName) at @Html.DisplayFor(x => msg.messagetime)       
+							@Html.DisplayFor(x => msg.MessageString) <a asp-area="" asp-controller="Message" asp-Action="Conversation" asp-route-id="@msg.DoctorID">Go To Conversation</a> 
+						</li>
+					}
+				</ul>
 			</div>	
 			<div class="panel-footer" style="background-color: #28c574; color: #ffffff; font-family: Arial">Footer</div>		
 		</div>

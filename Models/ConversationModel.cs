@@ -13,6 +13,7 @@ namespace SmartHealth.Models
 
         public string text { get; set; }
         public string DisplayName { get; set; }
+        public string CurrentTime { get; set; }
 
     }
 }

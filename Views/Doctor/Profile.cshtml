@@ -74,31 +74,6 @@ else
 						</ul>
 					</div>
 				</div>
-				<br><br>
-				<!-- @if (@ViewData["id"] == null)
-				{
-					<div class="w3-card-4 ins" >
-					<header class="w3-container w3-blue">
-						<h2>Messages</h2>
-					</header>
-					<div class="w3-container">
-						<ul class="demographics">
-							@foreach (var msg in Model.Messages) 
-							{
-								if (msg.FromPatient) 
-								{
-									<li> 
-									From: @Html.DisplayFor(x => msg.PatientName)        
-									@Html.DisplayFor(x => msg.MessageString) <a asp-area="" asp-controller="Message" asp-Action="Conversation" asp-route-id="@msg.PatientID">Go To Conversation</a> </li>
-								}
-							}
-						</ul>
-					</div>						
-					<footer class="w3-container w3-blue">
-					<h5>/*Footer*/</h5>
-					</footer>
-					</div>
-				} -->
 
 				<!-- ACCEPTED INSURANCE -->
 				<div class="w3-card-4 ins" >

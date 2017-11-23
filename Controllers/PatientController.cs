@@ -33,7 +33,14 @@ namespace SmartHealth.Controllers
                         appointment.PatientID == userId && ( DateTime.Parse(appointment.Date) >= DateTime.Now) == true
                          select appointment;
 
-            return View(query);
+            var messageList = (from message in _context.Messages
+                           where message.PatientID == user.Id  && !message.FromPatient select message);             
+
+            var data = new PatientViewModel();
+            data.Appointments = query;
+            data.Messages = messageList;
+
+            return View(data);
         }
 
         public async Task<IActionResult> Profile(string id)
@@ -44,8 +51,7 @@ namespace SmartHealth.Controllers
             else
                 user = await _userManager.FindByIdAsync(id);
             
-            var messageList = (from message in _context.Messages
-                           where message.PatientID == user.Id select message);
+            
 
             var medicalHistory = from appointment in _context.Appointments.AsEnumerable() where
                                  appointment.PatientID == user.Id && ( DateTime.Parse(appointment.Date) < DateTime.Now) == true
@@ -53,7 +59,6 @@ namespace SmartHealth.Controllers
             
             var data = new PatientViewModel();
             data.Patient = (PatientUser)user;
-            data.Messages = messageList;
             data.History = medicalHistory;
             return View(data);
         }
