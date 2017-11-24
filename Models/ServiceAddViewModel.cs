@@ -17,5 +17,7 @@ namespace SmartHealth.Models
 
         [Display(Name = "Duration")]
         public int Duration { get; set ;}
+
+        public int Id { get; set; }
     }
 }

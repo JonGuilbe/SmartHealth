@@ -129,7 +129,7 @@ else
 							</tr>
 							@foreach (var service in Model.Services) {
 							<tr>
-								<td>@service.Name</td>
+								<td><a asp-area="" asp-controller="Doctor" asp-Action="UpdateService" asp-route-id="@service.Id">@service.Name</a></td>
 								<td>$@service.Cost</td>
 							</tr>
 						}

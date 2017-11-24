@@ -141,5 +141,43 @@ namespace SmartHealth.Controllers
             }
             return View(model);
         }
+
+        [HttpGet]
+        public IActionResult UpdateService(int id, string returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = "/Doctor/Profile";
+            var service = _context.Services.SingleOrDefault(u => u.Id == id);
+            var model = new ServiceAddViewModel();
+            model.Name = service.Name;
+            model.Cost = service.Cost;
+            model.Duration = service.Duration;
+            model.Id = id;
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateService(int id, ServiceAddViewModel model, string returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = "/Doctor/Profile";
+            var oldService = _context.Services.SingleOrDefault(u => u.Id == id);
+            if(ModelState.IsValid){
+                oldService.Name = model.Name;
+                oldService.Cost = model.Cost;
+                oldService.Duration = model.Duration;
+                await _context.SaveChangesAsync();
+                return Redirect("/Doctor/Profile");
+            }
+            return View(model);
+        }
+
+        public async Task<IActionResult> RemoveService(int id)
+        {
+            var service = _context.Services.SingleOrDefault(u => u.Id == id);
+            if(service != null){
+                _context.Services.Remove(service);
+                await _context.SaveChangesAsync();
+            }
+            return Redirect("/Doctor/Profile");
+        }
     }
 }
