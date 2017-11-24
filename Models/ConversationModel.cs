@@ -11,7 +11,9 @@ namespace SmartHealth.Models
         public Boolean IsDoctor { get; set; }
         public IQueryable<Message> Messages { get; set; }
 
+        [Display(Name = "Write your message here!")]
         public string text { get; set; }
+        
         public string DisplayName { get; set; }
         public string CurrentTime { get; set; }
 

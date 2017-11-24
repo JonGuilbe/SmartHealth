@@ -45,42 +45,16 @@
 						<th>Name</th>
 						<th>Time</th>
 						<th>Date</th>
+						<th>Link</th>
 					</tr>
-					<tr>
-						<td>Appointment Name 1</td>
-						<td>3:45PM</td>
-						<td>03/04/17</td>
-					</tr>
-					<tr>
-						<td>Appointment Name 2</td>
-						<td>3:45PM</td>
-						<td>03/04/17</td>
-					</tr>
-					<tr>
-						<td>Appointment Name 3</td>
-						<td>3:45PM</td>
-						<td>03/04/17</td>
-					</tr>
-					<tr>
-						<td>Appointment Name 4</td>
-						<td>3:45PM</td>
-						<td>03/04/17</td>
-					</tr>
-					<tr>
-						<td>Appointment Name 5</td>
-						<td>3:45PM</td>
-						<td>03/04/17</td>
-					</tr>
-					<tr>
-						<td>Appointment Name 6</td>
-						<td>3:45PM</td>
-						<td>03/04/17</td>
-					</tr>
-					<tr>
-						<td>Appointment Name 7</td>
-						<td>3:45PM</td>
-						<td>03/04/17</td>
-					</tr>
+					@foreach (var app in Model.Appointments) {
+						<tr>
+							<td>@Html.DisplayFor(x => app.Service)</td>
+							<td>@Html.DisplayFor(x => app.starttime) - @Html.DisplayFor(x => app.endtime)</td>
+							<td>@Html.DisplayFor(x => app.Date)</td>
+							<td><a asp-area="" asp-controller="Appointment" asp-Action="ViewApp" asp-route-id="@app.Id">Details</a></td>
+						</tr>
+					}
 				</table>
 			
 			</div>

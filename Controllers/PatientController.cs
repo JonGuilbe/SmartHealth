@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using SmartHealth.Data;
+using SmartHealth.Models.AccountViewModels;
+using System.IO;
 
 namespace SmartHealth.Controllers 
 
@@ -61,6 +63,57 @@ namespace SmartHealth.Controllers
             data.Patient = (PatientUser)user;
             data.History = medicalHistory;
             return View(data);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Update(string returnUrl = null){
+            var model = new PatientRegisterViewModel();
+            var user = (PatientUser)await _userManager.GetUserAsync(HttpContext.User);
+            model.FirstName = user.FirstName;
+            model.LastName = user.LastName;
+            model.ZipCode = user.ZipCode;
+            model.Sex = user.Sex;
+            model.Insurance = user.Insurance;
+            model.PhoneNumber = user.PhoneNumber;
+            model.UserPhoto = model.UserPhoto;
+            ViewData["ReturnUrl"] = "/Patient/Profile";
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(PatientRegisterViewModel model, string returnUrl = null){
+            ViewData["ReturnUrl"] = "/Patient/Profile";
+            var currentUser =  await _userManager.GetUserAsync(HttpContext.User);
+            var DBuser = _context.Patients.SingleOrDefault(u => u.Id == currentUser.Id);
+            if(DBuser != null) 
+            {
+                DBuser.FirstName = model.FirstName;
+                DBuser.LastName = model.LastName;
+                DBuser.ZipCode = model.ZipCode;
+                DBuser.Sex = model.Sex;
+                DBuser.Insurance = model.Insurance;
+                DBuser.PhoneNumber = model.PhoneNumber;
+                using (var memoryStream = new MemoryStream())
+                {
+                  if(model.UserPhoto != null){
+                        await model.UserPhoto.CopyToAsync(memoryStream);
+                        DBuser.UserPhoto = memoryStream.ToArray();
+                  }
+                }
+                
+                if(DBuser.FirstName != model.FirstName || DBuser.LastName != model.LastName){
+                    var messages = (from message in _context.Messages
+                           where message.PatientID == currentUser.Id select message).ToList();
+                
+                    foreach(Message m in messages){
+                        m.PatientName = model.FirstName + " " + model.LastName;
+                    }
+                }
+
+                _context.SaveChanges();
+                return Redirect("/Patient/Profile");
+            }
+            return View(model);
         }
 
         public async Task<FileContentResult> UserPhotos(string id)
