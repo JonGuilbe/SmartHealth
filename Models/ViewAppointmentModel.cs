@@ -14,5 +14,11 @@ namespace SmartHealth.Models
 
         public Appointment App { get; set; }
 
+        public Boolean isHistory { get; set; }
+
+        public Boolean isPatientUser { get; set; }
+
+        public int id { get; set; }
+
     }
 }

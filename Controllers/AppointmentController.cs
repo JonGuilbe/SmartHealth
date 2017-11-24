@@ -62,7 +62,9 @@ namespace SmartHealth.Controllers
             }
             return View(model);
         }
-        public async Task<IActionResult> ViewApp(int id){
+
+        public async Task<IActionResult> ViewApp(int id)
+        {
             var user = await _userManager.GetUserAsync(HttpContext.User);
             var appointment = _context.Appointments.FirstOrDefault(i => i.Id == id);
             var doctorID = appointment.DoctorID;
@@ -74,7 +76,34 @@ namespace SmartHealth.Controllers
             data.Doctor = (DoctorUser)doctor;
             data.Patient = (PatientUser)patient;
             data.App = appointment;
+            data.isHistory = ( DateTime.Parse(appointment.Date) < DateTime.Now);
+            data.isPatientUser = (user.AccountType == "Patient");
+            data.id = id;
             return View(data);
+        }
+
+         public async Task<IActionResult> Cancel(int id)
+        {
+            var appointment = _context.Appointments.SingleOrDefault(u => u.Id == id);
+            if(appointment != null){
+                _context.Appointments.Remove(appointment);
+                await _context.SaveChangesAsync();
+            }
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            if(user.AccountType == "Doctor")
+                return Redirect("/Doctor/Home");
+            else
+                return Redirect("/Patient/Home");
+        }
+
+        public async Task<IActionResult> ChangePrivacy(int id)
+        {
+            var appointment = _context.Appointments.SingleOrDefault(u => u.Id == id);
+            if(appointment != null){
+                appointment.IsPrivate = !appointment.IsPrivate;
+                await _context.SaveChangesAsync();
+            }
+            return Redirect("/Appointment/ViewApp/"+ id.ToString());
         }
     }
 }

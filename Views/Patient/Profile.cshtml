@@ -91,17 +91,22 @@ else
 					<!-- Add functionality for privating medical records, and doctor/patient adding in info -->
 					<div class="w3-container" style="min-height: 100px;">
 						<ul>
-                          @foreach (var app in Model.History) {
-                            <li> @Html.DisplayFor(x => app.Service) , @Html.DisplayFor(x => app.Date)
-                               if(!app.IsPrivate) { 
-                                 @Html.DisplayFor(x => app.Notes) 
-                               }
-                               else { 
-                                PRIVATE 
-                               }
+                        @foreach (var app in Model.History) 
+						{
+                            <li> 
+								@Html.DisplayFor(x => app.Service), @Html.DisplayFor(x => app.Date) 
+								<text>
+								@if(@app.IsPrivate == false) { 
+									@Html.DisplayFor(x => app.Notes) 
+								}
+								else { 
+									<text>Private</text>
+								}
+								<a asp-area="" asp-controller="Appointment" asp-Action="ViewApp" asp-route-id="@app.Id">Details</a>
+								</text>
                             </li>
-                    }
-                  </ul>
+                    	}
+                 		</ul>
 					</div>
 					<footer class="w3-container w3-blue">
 						<h5><a class="btn btn-default" asp-area="" asp-controller="Pdf" asp-Action="Create" asp-route-id="@Model.Patient.Id" target="_blank">Get PDF of Records</a></h5>
