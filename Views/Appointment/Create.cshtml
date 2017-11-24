@@ -4,6 +4,21 @@
 }
 
 <h2>Create an Appointment:</h2>
+@if (@Model.conflicts != null) {
+    <div class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        <text> The time entered conflicts with this doctors schedule: </text>
+        <text>
+            <ul>
+                @foreach (var app in Model.conflicts) {
+                    <li>@app.starttime - @app.endtime</li>
+                }
+            </ul>
+            Please choose a different time.
+        </text>
+    </div>
+}
 <div class="row">
     <div class="col-md-4">
         <form method="post" asp-route-returnurl="@ViewData["ReturnUrl"]">

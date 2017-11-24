@@ -10,17 +10,19 @@ namespace SmartHealth.Models
     {
         [Required]
         [Display(Name = "Date")]
-        public string Date { get; set ;}
+        public string Date { get; set; }
 
         [Required]
         [Display(Name = "Service")]
-        public int Service { get; set ;}
+        public int Service { get; set; }
 
         [Display(Name = "Time")]
-        public string Time { get; set ;}
+        public string Time { get; set; }
 
         [Display(Name = "Notes")]
-        public string Notes { get; set ;}
+        public string Notes { get; set; }
+
+        public IEnumerable<Appointment> conflicts { get; set; }
 
     }
 }

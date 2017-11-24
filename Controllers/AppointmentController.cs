@@ -54,6 +54,28 @@ namespace SmartHealth.Controllers
             var AddDuration = new TimeSpan(0,0,service.Duration, 0);
             var EndTime = StartTime.Add(AddDuration);
             var endtime = EndTime.ToString("h:mm tt");
+
+            var currentAppointments = (from appointment in _context.Appointments 
+                                       where appointment.Date == model.Date select appointment);
+
+            foreach (var app in currentAppointments)
+            {
+                var ExistingStart = DateTime.ParseExact(app.starttime, "h:mm tt", System.Globalization.CultureInfo.CurrentCulture);
+                var ExistingEnd = DateTime.ParseExact(app.endtime, "h:mm tt", System.Globalization.CultureInfo.CurrentCulture);
+                if(StartTime < ExistingEnd && ExistingStart < EndTime){
+                    model.conflicts = currentAppointments;
+                    List<Service> serviceList = new List<Service>();
+                    serviceList = (from services in _context.Services
+                                where services.DoctorID == id select services).ToList();
+
+                    serviceList.Insert(0, new Service { Id = 0, Name = "Select"});
+
+                    ViewBag.ServiceList = serviceList;                    
+                    return View(model);
+                }
+
+            }
+
             if(ModelState.IsValid){
                 var appointment = new Appointment { Date = model.Date, DoctorID = id, PatientID = user.Id, Cost = service.Cost, Service = service.Name, Notes = model.Notes, starttime = model.Time, endtime = endtime }; //Fix duration thing at some point
                 _context.Appointments.Add(appointment);
@@ -91,7 +113,7 @@ namespace SmartHealth.Controllers
             }
             var user = await _userManager.GetUserAsync(HttpContext.User);
             if(user.AccountType == "Doctor")
-                return Redirect("/Doctor/Home");
+                return Redirect("/Message/Conversation/" + appointment.PatientID);
             else
                 return Redirect("/Patient/Home");
         }
