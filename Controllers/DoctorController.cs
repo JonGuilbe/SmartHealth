@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using SmartHealth.Data;
+using SmartHealth.Models.AccountViewModels;
+using System.IO;
 
 namespace SmartHealth.Controllers 
 
@@ -68,7 +70,58 @@ namespace SmartHealth.Controllers
             data.Services = services;
             return View(data);
         }
-        //TODO Fix this
+
+        [HttpGet]
+        public async Task<IActionResult> Update(string returnUrl = null){
+            var model = new DoctorRegisterViewModel();
+            var user = (DoctorUser)await _userManager.GetUserAsync(HttpContext.User);
+            model.FirstName = user.FirstName;
+            model.LastName = user.LastName;
+            model.Address = user.Address;
+            model.starttime = user.starttime;
+            model.endtime = user.endtime;
+            model.PhoneNumber = user.PhoneNumber;
+            model.UserPhoto = model.UserPhoto;
+            ViewData["ReturnUrl"] = "/Doctor/Profile";
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(DoctorRegisterViewModel model, string returnUrl = null){
+            ViewData["ReturnUrl"] = "/Doctor/Profile";
+            var currentUser =  await _userManager.GetUserAsync(HttpContext.User);
+            var DBuser = _context.Doctors.SingleOrDefault(u => u.Id == currentUser.Id);
+            if(DBuser != null) 
+            {
+                if(DBuser.FirstName != model.FirstName || DBuser.LastName != model.LastName){
+                    var messages = (from message in _context.Messages
+                           where message.DoctorID == currentUser.Id select message).ToList();
+                
+                    foreach(Message m in messages){
+                        m.DoctorName = model.FirstName + " " + model.LastName;
+                    }
+                }        
+                        
+                DBuser.FirstName = model.FirstName;
+                DBuser.LastName = model.LastName;
+                DBuser.Address = model.Address;
+                DBuser.starttime = model.starttime;
+                DBuser.endtime = model.endtime;
+                DBuser.PhoneNumber = model.PhoneNumber;
+                using (var memoryStream = new MemoryStream())
+                {
+                  if(model.UserPhoto != null){
+                        await model.UserPhoto.CopyToAsync(memoryStream);
+                        DBuser.UserPhoto = memoryStream.ToArray();
+                  }
+                }
+                
+                _context.SaveChanges();
+                return Redirect("/Doctor/Profile");
+            }
+            return View(model);
+        }
+
         [HttpGet]
         public IActionResult AddService(string returnUrl = null)
         {

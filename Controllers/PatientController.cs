@@ -87,6 +87,15 @@ namespace SmartHealth.Controllers
             var DBuser = _context.Patients.SingleOrDefault(u => u.Id == currentUser.Id);
             if(DBuser != null) 
             {
+                if(DBuser.FirstName != model.FirstName || DBuser.LastName != model.LastName){
+                    var messages = (from message in _context.Messages
+                           where message.PatientID == currentUser.Id select message).ToList();
+                
+                    foreach(Message m in messages){
+                        m.PatientName = model.FirstName + " " + model.LastName;
+                    }
+                }
+
                 DBuser.FirstName = model.FirstName;
                 DBuser.LastName = model.LastName;
                 DBuser.ZipCode = model.ZipCode;
@@ -101,15 +110,6 @@ namespace SmartHealth.Controllers
                   }
                 }
                 
-                if(DBuser.FirstName != model.FirstName || DBuser.LastName != model.LastName){
-                    var messages = (from message in _context.Messages
-                           where message.PatientID == currentUser.Id select message).ToList();
-                
-                    foreach(Message m in messages){
-                        m.PatientName = model.FirstName + " " + model.LastName;
-                    }
-                }
-
                 _context.SaveChanges();
                 return Redirect("/Patient/Profile");
             }
