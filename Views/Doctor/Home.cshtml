@@ -9,8 +9,9 @@
 
 	<div class="container" >
 
-		<!-- APPOINTMENTS CALENDAR -->
-		<div class="col-md-5">
+		<!-- APPOINTMENTS -->
+		<div class="row">
+		<div class="col-md-12">
 		<div class="panel panel-default">
 			<div class="panel-heading" style="background-color: #28c574; color: #ffffff; font-size: 28px; font-family:Arial">
 				Appointments
@@ -35,35 +36,36 @@
 				</table>
 			<!-- x -->
 			</div>
-			<div class="panel-footer" style="background-color: #28c574; color: #ffffff; font-family: Arial">Footer</div>
+			<div class="panel-footer" style="background-color: #28c574; color: #ffffff; font-family: Arial"></div>
 		</div>
 		</div>
-
+        </div>
 		<!-- AGENDA -->
-		<div class="col-md-7">
+		<!-- <div class="col-md-7">
 		<div class="panel panel-default">
 			<div class="panel-heading" style="background-color: #28c574; color: #ffffff; font-size: 28px; font-family:Arial">
 				Agenda
 			</div>
-			<div class="panel-body">
-			<!-- insert appointment code -->
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do 
+			<div class="panel-body" style="overflow-y: scroll; height: 250px"> -->
+			<!-- insert agenda code -->
+				<!-- Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do 
 				eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
 				enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-				nisi ut aliquip ex ea commodo consequat.
+				nisi ut aliquip ex ea commodo consequat. -->
 			<!-- x -->
-			</div>
-			<div class="panel-footer" style="background-color: #28c574; color: #ffffff; font-family: Arial">Footer</div>
+			<!-- </div>
+			<div class="panel-footer" style="background-color: #28c574; color: #ffffff; font-family: Arial"></div>
 		</div>
-		</div>
-		 
+		</div> -->
+		<br>
 		<!-- MESSAGES -->
+		<div class="row">
 		<div class="col-md-12">
 		<div class="panel panel-default">
 			<div class="panel-heading" style="background-color: #28c574; color: #ffffff; font-size: 28px; font-family:Arial">
 				Messages
 			</div>			
-			<div class="panel-body">
+			<div class="panel-body" style="overflow-y: scroll; height: 150px">
 				<ul>
 					@foreach (var msg in Model.Messages) 
 					{
@@ -74,7 +76,8 @@
 					}
 				</ul>
 			</div>	
-			<div class="panel-footer" style="background-color: #28c574; color: #ffffff; font-family: Arial">Footer</div>		
+			<div class="panel-footer" style="background-color: #28c574; color: #ffffff; font-family: Arial"></div>		
+		</div>
 		</div>
 		</div>
 

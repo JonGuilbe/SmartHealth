@@ -46,6 +46,9 @@ else
 							</p>
 						</ul>
 					</div>
+					<footer class="w3-container w3-blue">
+						<div style="height: 10px;"></div>
+					</footer>
 				</div>
 				<br> <br>
 
@@ -61,10 +64,13 @@ else
 							</ul>
 						</p>
 					</div>
+					<footer class="w3-container w3-blue">
+						<div style="height: 10px;"></div>
+					</footer>
 				</div>
 	            <br> <br>
 				<!-- ACCOUNT SETTINGS -->
-				<div class="w3-card-4 ins">
+				<!-- <div class="w3-card-4 ins">
 					<header class="w3-container w3-blue">
 						<h2>Account Settings</h2>
 					</header>
@@ -75,10 +81,7 @@ else
 							</ul>
 						</p>
 					</div>
-					<!-- <footer class="w3-container w3-blue">
-						<h5>/*Footer*/</h5>
-					</footer> -->
-				</div>
+				</div> -->
 			</div>
 
 			<!-- SECOND COLUMN -->
@@ -89,7 +92,7 @@ else
 					</header>
 
 					<!-- Add functionality for privating medical records, and doctor/patient adding in info -->
-					<div class="w3-container" style="min-height: 100px;">
+					<div class="w3-container" style="overflow-y: scroll; height: 220px">
 						<ul>
                         @foreach (var app in Model.History) 
 						{
@@ -108,6 +111,7 @@ else
                     	}
                  		</ul>
 					</div>
+				
 					<footer class="w3-container w3-blue">
 						<h5><a class="btn btn-default" asp-area="" asp-controller="Pdf" asp-Action="Create" asp-route-id="@Model.Patient.Id" target="_blank">Get PDF of Records</a></h5>
 					</footer>
@@ -120,7 +124,7 @@ else
 	<section>
 		@if (ViewData["id"] == null){
 			<footer id="wrapper">
-				<a class="btn btn-default" asp-area="" asp-controller="Patient" asp-Action="Update">Update Profile</a>
+				<a class="btn btn-info" asp-area="" asp-controller="Patient" asp-Action="Update"><strong>Update Profile</strong></a>
 			</footer>
 		}
 	</section>
