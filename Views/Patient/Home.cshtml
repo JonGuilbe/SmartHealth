@@ -6,32 +6,9 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="pstyle.css">
 
-<h2>Home Dashboard</h2><hr />
+<hr /><h2>Home Dashboard</h2><hr />
 
 	<div class="container" >
-
-		<!-- BASIC CALENDAR -->
-		<!-- <div class=" col-md-7">
-		<div class="panel panel-default">
-			<div class="panel-heading" style="background-color: #28c574; color: #ffffff; font-size: 28px; font-family:Arial">
-				Calendar
-			</div>
-			<div class="panel-body">
-				Basic calendar goes here <br>Lorem ipsum dolor sit amet, consectetur 
-				adipisicing elit, sed do eiusmod tempor incididunt ut labore et 
-				dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-				exercitation ullamco laboris nisi ut aliquip ex ea commodo 
-				consequat.
-			</div>
-			<ul>
-				@foreach (var app in Model.Appointments) {
-					<li>@Html.DisplayFor(x => app.Date) @Html.DisplayFor(x => app.Service) <a asp-area="" asp-controller="Appointment" asp-Action="ViewApp" asp-route-id="@app.Id">Details</a></li>
-				}
-			</ul>
-			<div class="panel-footer" style="background-color: #28c574; color: #ffffff; font-family: Arial">Footer</div>
-		</div>
-		</div> -->
-
 		<!-- APPOINTMENTS LIST -->
 		<div class="row">
 		<div class="col-md-12">
@@ -76,8 +53,8 @@
 					@foreach (var msg in Model.Messages) 
 					{
 						<li> 
-							From: @Html.DisplayFor(x => msg.DoctorName) at @Html.DisplayFor(x => msg.messagetime)       
-							@Html.DisplayFor(x => msg.MessageString) <a asp-area="" asp-controller="Message" asp-Action="Conversation" asp-route-id="@msg.DoctorID">Go To Conversation</a> 
+							From: @Html.DisplayFor(x => msg.DoctorName) at @Html.DisplayFor(x => msg.messagetime):<br />       
+							@Html.DisplayFor(x => msg.MessageString) <br /> <a asp-area="" asp-controller="Message" asp-Action="Conversation" asp-route-id="@msg.DoctorID"><b>Go To Conversation</b></a> 
 						</li>
 					}
 				</ul>

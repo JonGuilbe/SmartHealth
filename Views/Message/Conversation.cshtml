@@ -6,28 +6,46 @@
 <h2>Conversation with: @Model.DisplayName</h2>
 <div class="row">
     <div class="col">
-        <ul>
+        <ul style = "list-style: none;">
             @foreach (var msg in Model.Messages) {
                 @if (msg.FromPatient) {
-                    <text>
+                <div class = "panel panel-default">
                     @if (@Model.IsDoctor) {
-                        <li style="text-align: left"> Sent at @Html.DisplayFor(x=> msg.messagetime) , @Html.DisplayFor(x => msg.PatientName): @Html.DisplayFor(x => msg.MessageString) </li>
-                    }
+                    <div class = "panel-heading">
+                        <p class="card-text"><li style="text-align: left"> Sent at @Html.DisplayFor(x=> msg.messagetime) , @Html.DisplayFor(x => msg.PatientName):</li></p>
+                    </div>}
+                    @if (@Model.IsDoctor) {
+                    <div class = "panel-body">
+                        <p class="card-text"><li style="text-align: left"> @Html.DisplayFor(x => msg.MessageString) </li></p>
+                    </div>}
                     @if (!@Model.IsDoctor) {
-                        <li style="text-align: right"> Sent at @Html.DisplayFor(x=> msg.messagetime) , @Html.DisplayFor(x => msg.PatientName): @Html.DisplayFor(x => msg.MessageString)</li>
-                    }
-                    </text>
-                }
+                    <div class = "panel-heading">
+                        <p class="card-text"><li style="text-align: right"> Sent at @Html.DisplayFor(x=> msg.messagetime) , @Html.DisplayFor(x => msg.PatientName):</li></p>
+                    </div>}
+                    @if (!@Model.IsDoctor) {
+                    <div class = "panel-body">
+                     <p class="card-text"><li style="text-align: right"> @Html.DisplayFor(x => msg.MessageString)</li></p>
+                    </div>}
+                </div>}
                 @if (!msg.FromPatient) {
-                    <text>
+                <div class = "panel panel-default">
                     @if (@Model.IsDoctor) {
-                        <li style="text-align: right"> Sent at @Html.DisplayFor(x=> msg.messagetime) , @Html.DisplayFor(x => msg.DoctorName): @Html.DisplayFor(x => msg.MessageString) </li>
-                    }
+                    <div class = "panel-heading">
+                        <p class="card-text"><li style="text-align: right"> Sent at @Html.DisplayFor(x=> msg.messagetime) , @Html.DisplayFor(x => msg.DoctorName):</li></p>
+                    </div>}
+                    @if (@Model.IsDoctor) {
+                    <div class = "panel-body">
+                        <p class="card-text"><li style="text-align: right"> @Html.DisplayFor(x => msg.MessageString) </li></p>
+                    </div>}
                     @if (!@Model.IsDoctor) {
-                        <li style="text-align: left"> Sent at @Html.DisplayFor(x=> msg.messagetime) , @Html.DisplayFor(x => msg.DoctorName): @Html.DisplayFor(x => msg.MessageString) </li>
-                    }
-                    </text>
-                }
+                    <div class = "panel-heading">
+                        <p class="card-text"><li style="text-align: left"> Sent at @Html.DisplayFor(x=> msg.messagetime) , @Html.DisplayFor(x => msg.DoctorName):</li></p>
+                    </div>}
+                    @if (!@Model.IsDoctor) {
+                    <div class = "panel-body">
+                     <p class="card-text"><li style="text-align: left"> @Html.DisplayFor(x => msg.MessageString)</li></p>
+                    </div>}
+                </div>}
             }
         </ul>
         <form method="post" asp-route-returnurl="@ViewData["ReturnUrl"]">
