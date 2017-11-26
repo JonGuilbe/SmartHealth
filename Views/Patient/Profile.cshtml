@@ -11,7 +11,6 @@
 	}
 </style>
 
-<!-- This is not right -->
 @if (Model.Patient.AccountType == "Doctor" && ViewData["id"] == null)
 {
 	<h2>This page is for patients only. Please click on your username to access your profile.</h2>
@@ -91,25 +90,22 @@ else
 						<h2>Medical Records</h2>
 					</header>
 
-					<!-- Add functionality for privating medical records, and doctor/patient adding in info -->
-					<div class="w3-container" style="overflow-y: scroll; height: 220px">
-						<ul>
-                        @foreach (var app in Model.History) 
-						{
-                            <li> 
-								@Html.DisplayFor(x => app.Service), @Html.DisplayFor(x => app.Date) 
-								<text>
-								@if(@app.IsPrivate == false) { 
-									@Html.DisplayFor(x => app.Notes) 
-								}
-								else { 
-									<text>Private</text>
-								}
-								<a asp-area="" asp-controller="Appointment" asp-Action="ViewApp" asp-route-id="@app.Id">Details</a>
-								</text>
-                            </li>
+					<div class="w3-container">
+						<table class = "table">
+							<tr>
+								<th>Service</th>
+								<th>Date</th>
+								<th>Details</th>
+							</tr>
+                        	@foreach (var app in Model.History) 
+							{
+                            <tr>
+								<td><a asp-area="" asp-controller="Patient" asp-Action="UpdateMedicalRecords" asp-route-id="@app.Id">@app.Service</a></td>
+								<td>@app.Date</td>
+								<td><a asp-area="" asp-controller="Appointment" asp-Action="ViewApp" asp-route-id="@app.Id">Details</a></td>
+                            </tr>
                     	}
-                 		</ul>
+						</table>
 					</div>
 				
 					<footer class="w3-container w3-blue">
