@@ -33,6 +33,7 @@
 		</div> -->
 
 		<!-- APPOINTMENTS LIST -->
+		<div class="row">
 		<div class="col-md-12">
 		<div class="panel panel-default">
 			<div class="panel-heading" style="background-color: #28c574; color: #ffffff; font-size: 28px; font-family:Arial">
@@ -58,17 +59,19 @@
 				</table>
 			
 			</div>
-			<div class="panel-footer" style="background-color: #28c574; color: #ffffff; font-family: Arial"> Footer</div>
+			<div class="panel-footer" style="background-color: #28c574; color: #ffffff; font-family: Arial"></div>
 		</div>
 		</div>
-		 
+		</div>
+		 <br><br>
 		<!-- MESSAGES -->
+		<div class="row">
 		<div class="col-md-12">
 		<div class="panel panel-default">
 			<div class="panel-heading" style="background-color: #28c574; color: #ffffff; font-size: 28px; font-family:Arial">
 				Messages
 			</div>			
-			<div class="panel-body">
+			<div class="panel-body" style="overflow-y: scroll; height: 150px">
 				<ul>
 					@foreach (var msg in Model.Messages) 
 					{
@@ -79,7 +82,8 @@
 					}
 				</ul>
 			</div>	
-			<div class="panel-footer" style="background-color: #28c574; color: #ffffff; font-family: Arial">Footer</div>		
+			<div class="panel-footer" style="background-color: #28c574; color: #ffffff; font-family: Arial"></div>		
+		</div>
 		</div>
 		</div>
 
