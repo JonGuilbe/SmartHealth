@@ -57,7 +57,7 @@ namespace SmartHealth.Controllers
 
             var currentAppointments = (from appointment in _context.Appointments 
                                        where appointment.Date == model.Date select appointment);
-
+            model.conflicts = null;
             foreach (var app in currentAppointments)
             {
                 var ExistingStart = DateTime.ParseExact(app.starttime, "h:mm tt", System.Globalization.CultureInfo.CurrentCulture);
