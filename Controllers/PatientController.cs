@@ -116,6 +116,17 @@ namespace SmartHealth.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public IActionResult UpdateMedicalHistory(int id, string returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = "/Patient/Profile";
+            var history = _context.Appointments.SingleOrDefault(u => u.Id == id);
+            var model = new Appointment();
+            model.Service= history.Service;
+            model.Date = history.Date;
+            return View(model);
+        }
+
         public async Task<FileContentResult> UserPhotos(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
