@@ -1,0 +1,34 @@
+@model ViewAppointmentModel
+@{
+    ViewData["Title"] = "View";
+}
+
+<h2>View</h2>
+<div class="row">
+    <div class="col-md-4">
+        <h4>Date: @Model.App.Date</h4>
+        @if(@Model.isHistory) {
+        }
+        else {
+            <h4>Start Time: @Model.App.starttime</h4>
+            <h4>End Time: @Model.App.endtime</h4>
+            <h4>Cost: @Model.App.Cost</h4>
+        }        
+        <h4>Doctor: @Model.Doctor.FirstName @Model.Doctor.LastName</h4>
+        <h4>Patient: @Model.Patient.FirstName @Model.Patient.LastName</h4>
+        <h4>Service: @Model.App.Service</h4>
+        @if(!@Model.App.IsPrivate || Model.isPatientUser) {
+            <h4>Notes: @Model.App.Notes</h4>
+        }
+        else {
+            <h4>Notes: PRIVATE</h4>
+        }
+        <h4>Privacy Setting: @Model.App.IsPrivate</h4>
+    </div>
+    @if (Model.isHistory && Model.isPatientUser) {
+        <a class="btn btn-default" asp-area="" asp-controller="Appointment" asp-Action="ChangePrivacy" asp-route-id="@Model.id">Change Privacy</a>
+    }
+    else {
+        <a class="btn btn-danger" asp-area="" asp-controller="Appointment" asp-Action="Cancel" asp-route-id="@Model.id">Cancel Appointment</a>
+    }
+</div>

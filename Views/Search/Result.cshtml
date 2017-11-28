@@ -1,0 +1,44 @@
+@model IEnumerable<DoctorUser>
+@{
+    ViewData["Title"] = "Search Results";
+}
+
+<h2>Search results for @ViewData["Query"]:</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               Doctors
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Phone Number</td>
+            <td>Address</td>
+        </tr>
+            @foreach (var user in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(Resultuser => user.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(Resultuser => user.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(Resultuser => user.PhoneNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(Resultuser => user.Address)
+                    </td>
+                    <td>
+                        <a asp-area="" asp-controller="Doctor" asp-Action="Profile" asp-route-id="@user.Id">View Profile</a>
+                    </td>
+                </tr>
+            }
+    </tbody>
+</table>

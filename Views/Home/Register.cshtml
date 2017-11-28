@@ -1,0 +1,27 @@
+@{
+    ViewData["Title"] = "Register";
+}
+<h2>@ViewData["Title"]</h2>
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="panel panel-default">
+    <img class="img-responsive" style= "width:30% height: auto;"src="~/images/doctorStethoscope.jpg" alt="Card image cap">
+    <div class="panel-body">
+      <h4>Doctors</h4>
+      <p class="card-text">SmartHealth gives Doctors the ability to focus on Patient interaction by giving the power of scheduling to the Patient, and the power of approval to the Doctor. Quickly answer Patients' questions by messaging them directly, and always have your schedule available during correspondance.</p><p>You are the master of your own office.</p>
+      <a asp-area="" asp-controller="Account" class="btn btn-primary" asp-action="DoctorRegister">Create Doctor Account</a>
+    </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+  <div class="panel panel-default">
+    <img class="img-responsive" style= "width:30% height: auto;" src="~/images/patientThumbsUp.jpg" alt="Card image cap">
+    <div class="panel-body">
+      <h4>Patients</h4>
+      <p class="card-text">SmartHealth allows Patients to browse through local Doctors in their area, find the best price for a procedure, and choose an appointment time that best fits their schedule.</p><p>Power to the people.</p>
+      <a asp-area="" asp-controller="Account" class="btn btn-primary" asp-action="PatientRegister">Create Patient Account</a>
+    </div>
+  </div>
+  </div>
+</div>

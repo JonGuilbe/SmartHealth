@@ -1,0 +1,128 @@
+@model PatientViewModel
+@{
+	ViewData["Title"] = "Profile";
+}
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="pstyle.css">
+<style>
+	.ins{
+		background-color: white;
+	}
+</style>
+
+@if (Model.Patient.AccountType == "Doctor" && ViewData["id"] == null)
+{
+	<h2>This page is for patients only. Please click on your username to access your profile.</h2>
+}
+else 
+{	
+	<body style="background: linear-gradient(to bottom left, #c6e8f8 0%, rgb(243, 241, 92) 100%);">
+	<div class="clearfix content-heading">
+		<br><br>
+		<img src="@Url.Action("UserPhotos", "Patient", new { @id = @Model.Patient.Id })" style="height:175px; width:175px;" class="img-rounded pull-left"/>
+		<h2 style="margin-top:100px;"><strong>&nbsp; &nbsp;@Model.Patient.FirstName @Model.Patient.LastName</strong></h2>
+		<br>
+	</div>
+	<hr />
+
+	<section>
+		<!-- DEMOGRAPHICS AND MEDICAL RECORDS -->
+		<div class="row">
+			<div class="col-md-5">
+				<div class="w3-card-4 ins">
+					<header class="w3-container w3-blue">
+						<h2>Demographics</h2>
+					</header>
+					<div class="container">
+						<ul>
+							<p>
+								<li><strong>Date of Birth:</strong> @Model.Patient.DateOfBirth</li>
+								<li><strong>Phone Number:</strong> @Model.Patient.PhoneNumber</li>
+								<li><strong>Email:</strong> @Model.Patient.Email</li>
+								<li><strong>Ethnicity:</strong> @Model.Patient.Ethnicity</li>
+								<li><strong>Sex:</strong> @Model.Patient.Sex</li>
+							</p>
+						</ul>
+					</div>
+					<footer class="w3-container w3-blue">
+						<div style="height: 10px;"></div>
+					</footer>
+				</div>
+				<br> <br>
+
+				<!-- INSURANCE -->
+				<div class="w3-card-4 ins">
+					<header class="w3-container w3-blue">
+						<h2>Insurance</h2>
+					</header>
+					<div class="w3-container">
+						<p>
+							<ul>
+								<li>@Model.Patient.Insurance</li>
+							</ul>
+						</p>
+					</div>
+					<footer class="w3-container w3-blue">
+						<div style="height: 10px;"></div>
+					</footer>
+				</div>
+	            <br> <br>
+				<!-- ACCOUNT SETTINGS -->
+				<!-- <div class="w3-card-4 ins">
+					<header class="w3-container w3-blue">
+						<h2>Account Settings</h2>
+					</header>
+					<div class="w3-container" style="min-height: 100px;">
+						<p>
+							<ul>
+							  <li> x </li>
+							</ul>
+						</p>
+					</div>
+				</div> -->
+			</div>
+
+			<!-- SECOND COLUMN -->
+			<div class="col-md-7" >
+				<div class="w3-card-4 ins">
+					<header class="w3-container w3-blue">
+						<h2>Medical Records</h2>
+					</header>
+
+					<div class="w3-container">
+						<table class = "table">
+							<tr>
+								<th>Service</th>
+								<th>Date</th>
+								<th>Details</th>
+							</tr>
+                        	@foreach (var app in Model.History) 
+							{
+                            <tr>
+								<td><a asp-area="" asp-controller="Patient" asp-Action="UpdateMedicalRecords" asp-route-id="@app.Id">@app.Service</a></td>
+								<td>@app.Date</td>
+								<td><a asp-area="" asp-controller="Appointment" asp-Action="ViewApp" asp-route-id="@app.Id">Details</a></td>
+                            </tr>
+                    	}
+						</table>
+					</div>
+				
+					<footer class="w3-container w3-blue">
+						<h5><a class="btn btn-default" asp-area="" asp-controller="Pdf" asp-Action="Create" asp-route-id="@Model.Patient.Id" target="_blank">Get PDF of Records</a></h5>
+					</footer>
+				</div>
+			</div>		
+		</div> 
+	</section>
+
+<br> <br>
+	<section>
+		@if (ViewData["id"] == null){
+			<footer id="wrapper">
+				<a class="btn btn-info" asp-area="" asp-controller="Patient" asp-Action="Update"><strong>Edit Profile</strong></a>
+			</footer>
+		}
+	</section>
+</body>
+}

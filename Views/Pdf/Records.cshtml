@@ -1,0 +1,39 @@
+@model PdfViewModel
+@{
+    ViewData["Title"] = "SmartHealth Medical Record";
+}
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<h1 class="text-center">Medical Records for @Model.PatientName :</h1>
+<div class="container">
+    <div class = "col-md-7">
+        <div class="panel panel-default">
+            <div class="panel-heading " style="background-color: #28c574">
+				<div class="panel-body">
+                    @foreach (var app in Model.Appointments) {
+                         <h3>@Html.DisplayFor(x => app.Service), @Html.DisplayFor(x => app.Date)</h3>
+                            <text>
+                            @if(!app.IsPrivate) 
+                            { 
+                                @Html.DisplayFor(x => app.Notes) 
+                            }
+                            else
+                            {
+                                <text>Details set to private.</text>
+                            }
+                            </text>
+                            <br/> <br/>
+                    }
+                </div>
+			</div>
+        </div>
+    </div>
+</div>

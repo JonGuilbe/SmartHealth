@@ -1,0 +1,52 @@
+@model AppointmentRegisterViewModel
+@{
+    ViewData["Title"] = "Create Appointment";
+}
+
+<h2>Create an Appointment:</h2>
+@if (@Model != null && @Model.conflicts != null) {
+    <div class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        <text> The time entered conflicts with this doctors schedule: </text>
+        <text>
+            <ul>
+                @foreach (var app in Model.conflicts) {
+                    <li>@app.starttime - @app.endtime</li>
+                }
+            </ul>
+            Please choose a different time.
+        </text>
+    </div>
+}
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-route-returnurl="@ViewData["ReturnUrl"]">
+            <h4>Create an Appointment.</h4>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Date"></label>
+                <input type="datetime" asp-for="Date" class="form-control" placeholder="01/01/2017" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Service" class="control-label"></label>
+                <select asp-for="Service"
+                    class="form-control"
+                    asp-items="@(new SelectList(@ViewBag.ServiceList,"Id","Name"))"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Time"></label>
+                <input asp-for="Time" class="form-control" placeholder="4:02 pm"/>
+                <span asp-validation-for="Time" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Notes"></label>
+                <input asp-for="Notes" class="form-control" />
+                <span asp-validation-for="Notes" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-default">Set up Appointment</button>
+        </form>
+    </div>
+</div>
