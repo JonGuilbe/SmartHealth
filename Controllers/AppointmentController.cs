@@ -56,7 +56,7 @@ namespace SmartHealth.Controllers
             var endtime = EndTime.ToString("h:mm tt");
 
             var currentAppointments = (from appointment in _context.Appointments 
-                                       where appointment.Date == model.Date select appointment);
+                                       where appointment.Date == model.Date && appointment.DoctorID == id select appointment);
             model.conflicts = null;
             foreach (var app in currentAppointments)
             {
